@@ -51,7 +51,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     @IBAction func saveButtonClicked(_ sender: UIButton) {
         
-        if date.text == "" || name.text == "" {
+        if date.text == "" || name.text == "" || selectBerber.text == ""  {
             
             makeAllert(titleInput: "Hata", messageInput: "Girilen bilgiler eksik.")
             
@@ -123,8 +123,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         let okAction = UIAlertAction(title: "Eminim", style: UIAlertAction.Style.default) {
                 UIAlertAction in
             self.checkAvalibility(name: self.name, berber: self.selectBerber, date: self.date)
-           
-            
             self.areYouSure()
             
             
@@ -180,28 +178,23 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func saveToDatabase(name:UITextField,berber:UITextField,date:UITextField){
         
 
-       
+        let object : [String:Any] = ["name":name.text ?? "nil","berber":berber.text ?? "nil","date":date.text ?? "nil","musait":musaitlik]
+        var tamRandevu = date.text!+" "+berber.text!
+        
+        
+        let stationsRef = Database.database().reference().child("byMakas")
+        stationsRef.child(tamRandevu).setValue(object)
+        
         
     }
 
     func checkAvalibility(name:UITextField,berber:UITextField,date:UITextField){
-        let object : [String:Any] = ["name":name.text ?? "nil","berber":berber.text ?? "nil","date":date.text ?? "nil","musait":musaitlik]
-        
-        database.child(date.text!).observeSingleEvent(of: .value) { (DataSnapshot) in
+       
+        database.child(date.text!+berber.text!).observeSingleEvent(of: .value) { (DataSnapshot) in
             guard let value = DataSnapshot.value  as? [String:Any] else {
               return
             }
-            print("Seçilen Tarih :\(value["musait"] ?? "Date Nil")")
-            if value["musait"] as! String == "Bos" {
-                
-                self.musaitlik = "Bos"
-                self.database.child(date.text!).setValue(object)
-                self.performSegue(withIdentifier: "detailsPage", sender: self)
-            }else{
-                self.musaitlik = "Dolu"
-                self.makeAllert(titleInput: "Uyarı", messageInput: "Seçtiğin gün dolu")
-                
-            }
+          
             
         }
     }
