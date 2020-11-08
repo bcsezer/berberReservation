@@ -10,6 +10,7 @@
 		2612E52602848332D8C76591 /* Pods_berber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44F2B7B1AEB302973628B55 /* Pods_berber.framework */; };
 		3AEDA15D2B25C9F6A502492B /* Pods_berber_berberUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56D2E5A67DC5B102BCFE9BD /* Pods_berber_berberUITests.framework */; };
 		60907B157D20F36E43054ADA /* Pods_berberTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAB8266AC2172BED580CCC74 /* Pods_berberTests.framework */; };
+		A84FEFB02558937C0001E27D /* popUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84FEFAF2558937B0001E27D /* popUp.swift */; };
 		A8844D392541F57200502B74 /* detailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8844D382541F57200502B74 /* detailViewController.swift */; };
 		A8844D3E2542166100502B74 /* locationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8844D3D2542166100502B74 /* locationViewController.swift */; };
 		A8844D442542378C00502B74 /* iletisimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8844D432542378C00502B74 /* iletisimViewController.swift */; };
@@ -23,7 +24,7 @@
 		A8C2F6BE2538F1C20081852E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8C2F6BC2538F1C20081852E /* LaunchScreen.storyboard */; };
 		A8C2F6C92538F1C20081852E /* berberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C2F6C82538F1C20081852E /* berberTests.swift */; };
 		A8C2F6D42538F1C20081852E /* berberUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C2F6D32538F1C20081852E /* berberUITests.swift */; };
-		A8C579F8254CB27B00BF7471 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8C579F7254CB27B00BF7471 /* GoogleService-Info.plist */; };
+		A8EA238525547A8700180342 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8EA238425547A8700180342 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		01F3E11ED1F9F85E169F19A9 /* Pods-berber.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-berber.debug.xcconfig"; path = "Target Support Files/Pods-berber/Pods-berber.debug.xcconfig"; sourceTree = "<group>"; };
 		289E8B461C1FB254A812BACF /* Pods-berber-berberUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-berber-berberUITests.release.xcconfig"; path = "Target Support Files/Pods-berber-berberUITests/Pods-berber-berberUITests.release.xcconfig"; sourceTree = "<group>"; };
 		577EDF4571011D302A5BB54C /* Pods-berber.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-berber.release.xcconfig"; path = "Target Support Files/Pods-berber/Pods-berber.release.xcconfig"; sourceTree = "<group>"; };
+		A84FEFAF2558937B0001E27D /* popUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popUp.swift; sourceTree = "<group>"; };
 		A8844D382541F57200502B74 /* detailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailViewController.swift; sourceTree = "<group>"; };
 		A8844D3D2542166100502B74 /* locationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationViewController.swift; sourceTree = "<group>"; };
 		A8844D432542378C00502B74 /* iletisimViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iletisimViewController.swift; sourceTree = "<group>"; };
@@ -66,7 +68,7 @@
 		A8C2F6CF2538F1C20081852E /* berberUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = berberUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8C2F6D32538F1C20081852E /* berberUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = berberUITests.swift; sourceTree = "<group>"; };
 		A8C2F6D52538F1C20081852E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A8C579F7254CB27B00BF7471 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A8EA238425547A8700180342 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B2BAF8744BA10E8183923514 /* Pods-berber-berberUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-berber-berberUITests.debug.xcconfig"; path = "Target Support Files/Pods-berber-berberUITests/Pods-berber-berberUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B56D2E5A67DC5B102BCFE9BD /* Pods_berber_berberUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_berber_berberUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFBDF3790BD08FFB34BBBA12 /* Pods-berberTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-berberTests.release.xcconfig"; path = "Target Support Files/Pods-berberTests/Pods-berberTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 		A8C2F6B02538F1BE0081852E /* berber */ = {
 			isa = PBXGroup;
 			children = (
+				A84FEFAF2558937B0001E27D /* popUp.swift */,
 				A8844D422542368600502B74 /* menuViewControllers */,
 				A8C2F6B12538F1BE0081852E /* AppDelegate.swift */,
 				A8C2F6B32538F1BE0081852E /* SceneDelegate.swift */,
@@ -158,7 +161,7 @@
 				A8C2F6BA2538F1C20081852E /* Assets.xcassets */,
 				A8C2F6BC2538F1C20081852E /* LaunchScreen.storyboard */,
 				A8C2F6BF2538F1C20081852E /* Info.plist */,
-				A8C579F7254CB27B00BF7471 /* GoogleService-Info.plist */,
+				A8EA238425547A8700180342 /* GoogleService-Info.plist */,
 			);
 			path = berber;
 			sourceTree = "<group>";
@@ -302,9 +305,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8EA238525547A8700180342 /* GoogleService-Info.plist in Resources */,
 				A8C2F6BE2538F1C20081852E /* LaunchScreen.storyboard in Resources */,
 				A8C2F6BB2538F1C20081852E /* Assets.xcassets in Resources */,
-				A8C579F8254CB27B00BF7471 /* GoogleService-Info.plist in Resources */,
 				A8C2F6B92538F1BE0081852E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -441,6 +444,7 @@
 				A8C2F6B42538F1BE0081852E /* SceneDelegate.swift in Sources */,
 				A8844D442542378C00502B74 /* iletisimViewController.swift in Sources */,
 				A8844D392541F57200502B74 /* detailViewController.swift in Sources */,
+				A84FEFB02558937C0001E27D /* popUp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -69,6 +69,7 @@ PODS:
   - GoogleUtilities/UserDefaults (6.7.2):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.4.0)
+  - JVFloatLabeledTextField (1.2.2)
   - leveldb-library (1.22)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
@@ -83,6 +84,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - JVFloatLabeledTextField
   - SwiftPhotoGallery
 
 SPEC REPOS:
@@ -98,6 +100,7 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleUtilities
     - GTMSessionFetcher
+    - JVFloatLabeledTextField
     - leveldb-library
     - nanopb
     - PromisesObjC
@@ -115,11 +118,12 @@ SPEC CHECKSUMS:
   GoogleDataTransport: b7f406340a291370045a270c599e53c6fa6ec20f
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
+  JVFloatLabeledTextField: df48598472ee015701d509f43e59492a0d4ca208
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   SwiftPhotoGallery: 795b79e2596beb160fb978e232603da0811006ce
 
-PODFILE CHECKSUM: 48c6a8d41f6238b7094d8c63c58362a7d3e3f9f6
+PODFILE CHECKSUM: eb9b2eddc350e337728d3cef35fa0cab5e3311c3
 
 COCOAPODS: 1.9.2

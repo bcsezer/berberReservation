@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>67288405723-4abbrgaa50g2s6jg2dfa6uuegbsk4t7a.apps.googleusercontent.com</string>
+	<string>792053659316-jbneqlmkgceelkr3eca0i3mihtvpq1on.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.67288405723-4abbrgaa50g2s6jg2dfa6uuegbsk4t7a</string>
+	<string>com.googleusercontent.apps.792053659316-jbneqlmkgceelkr3eca0i3mihtvpq1on</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCFWtjM9gbKfVJoF4qm4koolucME0j4KQw</string>
+	<string>AIzaSyCvp_f8V2pykFZrs9B8eaS9VUpb3LKsZlo</string>
 	<key>GCM_SENDER_ID</key>
-	<string>67288405723</string>
+	<string>792053659316</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.cemsezeroglu.berber</string>
 	<key>PROJECT_ID</key>
-	<string>realtimeberberber</string>
+	<string>berberrandevu-de05d</string>
 	<key>STORAGE_BUCKET</key>
-	<string>realtimeberberber.appspot.com</string>
+	<string>berberrandevu-de05d.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:67288405723:ios:b3fbd51d230b79cd311efe</string>
+	<string>1:792053659316:ios:ff8cf4c1c39e54699709e1</string>
 	<key>DATABASE_URL</key>
-	<string>https://realtimeberberber.firebaseio.com</string>
+	<string>https://berberrandevu-de05d.firebaseio.com</string>
 </dict>
 </plist>

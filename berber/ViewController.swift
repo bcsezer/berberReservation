@@ -21,14 +21,14 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        berberNames[row]
+        
         selectBerber.text = berberNames[row]
         
         return berberNames[row]
     }
     
     let imageNames = ["resim1", "resim2", "resim3","resim4","resim5"]
-    let berberNames = ["Yavuz Kucur","Yılmaz Saatçi"]
+    let berberNames = ["Yavuz","Yılmaz"]
     
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var date: UITextField!
@@ -49,6 +49,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         createDatepicker()
         initializeHideKeyboard()
     }
+    
+    
     @IBAction func saveButtonClicked(_ sender: UIButton) {
         
         if date.text == "" || name.text == "" || selectBerber.text == ""  {
@@ -73,7 +75,13 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         configureTextfield(textview: date)
         configureTextfield(textview: selectBerber)
         configurePlaceHolderColor()
-        
+        rezerveEtButton.alpha = 0
+        UIView.animate(withDuration: 1, delay: 0, options: [.allowUserInteraction], animations: {
+ 
+            self.rezerveEtButton.alpha = 1
+            self.view.layoutIfNeeded()
+           
+        }, completion: nil)
     }
     @IBAction func galeriButtonClicked(_ sender: UIButton) {
         
@@ -120,9 +128,12 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         let alertController = UIAlertController(title: "Rezervasyon", message: "Rezervasyon Bilgilerin :\(name.text!) \n \(date.text!) \n \(selectBerber.text!) ", preferredStyle: .alert)
 
             // Create the actions
-        let okAction = UIAlertAction(title: "Eminim", style: UIAlertAction.Style.default) {
+        let okAction = UIAlertAction(title: "Eminim", style: UIAlertAction.Style.default) { [self]
                 UIAlertAction in
-            self.checkAvalibility(name: self.name, berber: self.selectBerber, date: self.date)
+//            self.saveToDatabase(name: name.text!, berber: selectBerber.text!, date: date.text!)
+            self.checkAvalibility(name: name.text!, berber: selectBerber.text!, date: date.text!)
+            
+            
             self.areYouSure()
             
             
@@ -175,28 +186,39 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
     }
     
-    func saveToDatabase(name:UITextField,berber:UITextField,date:UITextField){
+    func saveToDatabase(name:String,berber:String,date:String){
         
-
-        let object : [String:Any] = ["name":name.text ?? "nil","berber":berber.text ?? "nil","date":date.text ?? "nil","musait":musaitlik]
-        var tamRandevu = date.text!+" "+berber.text!
+        let tamRandevu = date+" "+berber
+        let object : [String:Any] = ["name":name ,"berber":berber ,"date":date ,"tamRandevu":tamRandevu]
         
         
-        let stationsRef = Database.database().reference().child("byMakas")
+        
+        let stationsRef = database.child("byMakas")
         stationsRef.child(tamRandevu).setValue(object)
         
         
     }
 
-    func checkAvalibility(name:UITextField,berber:UITextField,date:UITextField){
-       
-        database.child(date.text!+berber.text!).observeSingleEvent(of: .value) { (DataSnapshot) in
-            guard let value = DataSnapshot.value  as? [String:Any] else {
-              return
-            }
-          
+    func checkAvalibility(name:String,berber:String,date:String){
+        let tamRandevu = date+" "+berber
+        database.child("byMakas").child(tamRandevu).observeSingleEvent(of: .value, with: { (snapshot) in
+          // Get user value
+          let value = snapshot.value as? NSDictionary
+          let randevu = value?["tamRandevu"] as? String ?? ""
             
+            if randevu == tamRandevu{
+                
+                print("Bu randevu Dolu")
+                self.makeAllert(titleInput: "Randevu saati dolu", messageInput: "Randevu saati dolu. Berberinizi ya da saati yeniden seçiniz.")
+            }else{
+                self.saveToDatabase(name: name, berber: berber, date: date)
+            }
+
+          // ...
+          }) { (error) in
+            print(error.localizedDescription)
         }
+        
     }
     
     func areYouSure(){
@@ -210,8 +232,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         datePicker.preferredDatePickerStyle = .wheels
         date.inputView = datePicker
         let loc = Locale(identifier: "tr")
+        self.datePicker.minuteInterval = 30
+     
         self.datePicker.locale = loc
-
+        
         date.inputAccessoryView = createToolBar()
         
         let namePicker = UIPickerView()
@@ -225,8 +249,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     @objc func donePressed(){
-        dateFormatter.dateStyle = .medium
+        dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .short
+        
         self.date.text = dateFormatter.string(from: datePicker.date)
         view.endEditing(true)
         
@@ -271,9 +296,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? detailViewController{
-            destination.name = self.name.text ?? "nil"
-            destination.date = selectBerber.text ?? "nil"
-            destination.berber = date.text ?? "nil"
+//            destination.name = self.name.text ?? "nil"
+//            destination.date = selectBerber.text ?? "nil"
+//            destination.berber = date.text ?? "nil"
             
         }
     }
