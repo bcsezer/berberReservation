@@ -9,30 +9,12 @@ import UIKit
 import SwiftPhotoGallery
 import Firebase
 
-class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-    var musaitlik = "Dolu"
-    private let database = Database.database().reference()
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        berberNames.count
-    }
-   
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        selectBerber.text = berberNames[row]
-        
-        return berberNames[row]
-    }
+class ViewController: UIViewController {
+
+ 
     
     let imageNames = ["resim1", "resim2", "resim3","resim4","resim5"]
-    let berberNames = ["Yavuz","Yılmaz"]
     
-    @IBOutlet weak var name: UITextField!
-    @IBOutlet weak var date: UITextField!
-    @IBOutlet weak var selectBerber: UITextField!
     @IBOutlet weak var rezerveEtButton: UIButton!
     @IBOutlet weak var galeriButton: UIButton!
     
@@ -40,29 +22,13 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var iletisimButton: UIButton!
     
     @IBOutlet weak var aboutButton: UIButton!
-    let dateFormatter = DateFormatter()
-    let datePicker = UIDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        createDatepicker()
-        initializeHideKeyboard()
+       
     }
     
-    
-    @IBAction func saveButtonClicked(_ sender: UIButton) {
-        
-        if date.text == "" || name.text == "" || selectBerber.text == ""  {
-            
-            makeAllert(titleInput: "Hata", messageInput: "Girilen bilgiler eksik.")
-            
-        }else{
-            makeAllerWithAction()
-            
-        }
-        
-    }
+  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureReserveButton()
@@ -71,17 +37,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         configureButtons(button: konumButton)
         configureButtons(button: iletisimButton)
         
-        configureTextfield(textview: name)
-        configureTextfield(textview: date)
-        configureTextfield(textview: selectBerber)
-        configurePlaceHolderColor()
-        rezerveEtButton.alpha = 0
-        UIView.animate(withDuration: 1, delay: 0, options: [.allowUserInteraction], animations: {
- 
-            self.rezerveEtButton.alpha = 1
-            self.view.layoutIfNeeded()
-           
-        }, completion: nil)
+      
+       
+     
     }
     @IBAction func galeriButtonClicked(_ sender: UIButton) {
         
@@ -94,6 +52,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     @IBAction func iletisimcClicked(_ sender: UIButton) {
         performSegue(withIdentifier: "iletisimVC", sender: self)
+    }
+    @IBAction func detailVC(_ sender: Any) {
+        performSegue(withIdentifier: "detailsPage", sender: self)
     }
     
     @IBAction func hakkimizdaButton(_ sender: UIButton) {
@@ -115,152 +76,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         
     }
-    
-    func configurePlaceHolderColor(){
-        
-        name.attributedPlaceholder = NSAttributedString(string: "İsim ve soyad girin", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
-        date.attributedPlaceholder = NSAttributedString(string: "Gün Tarih Seç", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
-        selectBerber.attributedPlaceholder = NSAttributedString(string: "Berberini Yaz", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
-    }
-   
-    func makeAllerWithAction(){
-        // Create the alert controller
-        let alertController = UIAlertController(title: "Rezervasyon", message: "Rezervasyon Bilgilerin :\(name.text!) \n \(date.text!) \n \(selectBerber.text!) ", preferredStyle: .alert)
 
-            // Create the actions
-        let okAction = UIAlertAction(title: "Eminim", style: UIAlertAction.Style.default) { [self]
-                UIAlertAction in
-//            self.saveToDatabase(name: name.text!, berber: selectBerber.text!, date: date.text!)
-            self.checkAvalibility(name: name.text!, berber: selectBerber.text!, date: date.text!)
-            
-            
-            self.areYouSure()
-            
-            
-            }
-        let cancelAction = UIAlertAction(title: "İptal", style: UIAlertAction.Style.cancel) {
-                UIAlertAction in
-              
-            }
 
-            // Add the actions
-            alertController.addAction(okAction)
-            alertController.addAction(cancelAction)
-
-            // Present the controller
-        self.present(alertController, animated: true, completion: nil)
-        
-    }
-    func createToolBar() -> UIToolbar{
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
-        
-        toolBar.setItems([spaceButton,doneButton], animated: true)
-        return toolBar
-        
-    }
-    func createBerberList()-> UIToolbar{
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneBerberListPressed))
-        
-        
-        toolBar.setItems([spaceButton,doneButton], animated: true)
-        return toolBar
-    }
-    func configureTextfield(textview:UITextField){
-        //Mark:TextField'ın altına çizgi
-        let bottomLine = CALayer()
-        bottomLine.frame = CGRect(x: 0, y: textview.frame.height-2, width: textview.frame.width, height: 1)
-        bottomLine.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        
-        textview.layer.cornerRadius = 10
-        
-        textview.borderStyle = .none
-        textview.layer.addSublayer(bottomLine)
-        
-    }
-    
-    func saveToDatabase(name:String,berber:String,date:String){
-        
-        let tamRandevu = date+" "+berber
-        let object : [String:Any] = ["name":name ,"berber":berber ,"date":date ,"tamRandevu":tamRandevu]
-        
-        
-        
-        let stationsRef = database.child("byMakas")
-        stationsRef.child(tamRandevu).setValue(object)
-        
-        
-    }
-
-    func checkAvalibility(name:String,berber:String,date:String){
-        let tamRandevu = date+" "+berber
-        database.child("byMakas").child(tamRandevu).observeSingleEvent(of: .value, with: { (snapshot) in
-          // Get user value
-          let value = snapshot.value as? NSDictionary
-          let randevu = value?["tamRandevu"] as? String ?? ""
-            
-            if randevu == tamRandevu{
-                
-                print("Bu randevu Dolu")
-                self.makeAllert(titleInput: "Randevu saati dolu", messageInput: "Randevu saati dolu. Berberinizi ya da saati yeniden seçiniz.")
-            }else{
-                self.saveToDatabase(name: name, berber: berber, date: date)
-            }
-
-          // ...
-          }) { (error) in
-            print(error.localizedDescription)
-        }
-        
-    }
-    
-    func areYouSure(){
-        selectBerber.text = ""
-        date.text = ""
-        name.text = ""
-    }
-    
-    func createDatepicker(){
-        
-        datePicker.preferredDatePickerStyle = .wheels
-        date.inputView = datePicker
-        let loc = Locale(identifier: "tr")
-        self.datePicker.minuteInterval = 30
-     
-        self.datePicker.locale = loc
-        
-        date.inputAccessoryView = createToolBar()
-        
-        let namePicker = UIPickerView()
-        namePicker.dataSource = self
-        namePicker.delegate = self
-        
-        selectBerber.inputAccessoryView = createBerberList()
-        selectBerber.inputView = namePicker
-        datePicker.preferredDatePickerStyle = .wheels
-        
-    }
-    
-    @objc func donePressed(){
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .short
-        
-        self.date.text = dateFormatter.string(from: datePicker.date)
-        view.endEditing(true)
-        
-    }
-    
-    @objc func doneBerberListPressed(){
-        
-        view.endEditing(true)
-    }
     
     
     func configureReserveButton(){
@@ -280,34 +97,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
     }
     
-    func initializeHideKeyboard(){
-     //Declare a Tap Gesture Recognizer which will trigger our dismissMyKeyboard() function
-     let tap: UITapGestureRecognizer = UITapGestureRecognizer(
-     target: self,
-     action: #selector(dismissMyKeyboard))
-     //Add this tap gesture recognizer to the parent view
-     view.addGestureRecognizer(tap)
-     }
-    @objc func dismissMyKeyboard(){
-    //endEditing causes the view (or one of its embedded text fields) to resign the first responder status.
-    //In short- Dismiss the active keyboard.
-    view.endEditing(true)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? detailViewController{
-//            destination.name = self.name.text ?? "nil"
-//            destination.date = selectBerber.text ?? "nil"
-//            destination.berber = date.text ?? "nil"
-            
-        }
-    }
-    
-    func makeAllert(titleInput :String,messageInput:String){
-            let alert = UIAlertController(title: titleInput, message: messageInput, preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Tamam", style: UIAlertAction.Style.cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-    }
+ 
                 
 }
 

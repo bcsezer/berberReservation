@@ -77,6 +77,7 @@ PODS:
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
   - PromisesObjC (1.2.10)
+  - SwiftGifOrigin (1.7.0)
   - SwiftPhotoGallery (3.4.1)
 
 DEPENDENCIES:
@@ -85,6 +86,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - JVFloatLabeledTextField
+  - SwiftGifOrigin (~> 1.7.0)
   - SwiftPhotoGallery
 
 SPEC REPOS:
@@ -104,6 +106,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - SwiftGifOrigin
     - SwiftPhotoGallery
 
 SPEC CHECKSUMS:
@@ -122,8 +125,9 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
+  SwiftGifOrigin: fbd6cf37afcfcf97a5c3db996ddc0492e5c5c145
   SwiftPhotoGallery: 795b79e2596beb160fb978e232603da0811006ce
 
-PODFILE CHECKSUM: eb9b2eddc350e337728d3cef35fa0cab5e3311c3
+PODFILE CHECKSUM: 93cdcb90ccdfdcd2b94efddb18d063db9aa7146c
 
 COCOAPODS: 1.9.2

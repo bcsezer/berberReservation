@@ -13,6 +13,7 @@ class detailViewController: UIViewController {
     //MARK: İnitialize database - ref
     private let database = Database.database().reference()
     
+    @IBOutlet weak var containerView: UIView!
     
     //MARK: Properties
     @IBOutlet weak var nameText: UITextField!
@@ -46,8 +47,8 @@ class detailViewController: UIViewController {
         summaryLabel.isHidden = true
         reserveButton.isHidden = true
         configureActivity()
+        containerView.isHidden = true
         
-       
     }
   
     func configureTextfield(textview:UITextField){
@@ -148,6 +149,7 @@ class detailViewController: UIViewController {
         
         let stationsRef = database.child("byMakas") //Eğer yeni bir ref'e eklenicekse. örn xberber "byMakas" ismi değişicek
         stationsRef.child(tamRandevu).setValue(object)
+        containerView.isHidden = false
         activityIndicator.stopAnimating()
         
         

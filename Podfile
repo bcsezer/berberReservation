@@ -11,6 +11,7 @@ target 'berber' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'JVFloatLabeledTextField'
+  pod 'SwiftGifOrigin', '~> 1.7.0'
  
 	
 
