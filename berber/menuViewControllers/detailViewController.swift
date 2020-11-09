@@ -7,22 +7,27 @@
 
 import UIKit
 import Firebase
+import SwiftGifOrigin
 
 class detailViewController: UIViewController {
    
     //MARK: İnitialize database - ref
     private let database = Database.database().reference()
     
-    @IBOutlet weak var containerView: UIView!
-    
+   
     //MARK: Properties
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var dateAndTimeText: UITextField!
-    @IBOutlet weak var summaryText: UITextView!
-    @IBOutlet weak var summaryLabel: UILabel!
-    @IBOutlet weak var reserveButton: UIButton!
+    
+  
     @IBOutlet var buttons: [UIButton]!
     var berberName = ""
+    
+    //Summary view elements
+    @IBOutlet weak var checkMark: UIImageView!
+    @IBOutlet weak var reserveButton: UIButton!
+    @IBOutlet weak var summaryText: UITextView!
+    @IBOutlet weak var summaryLabel: UILabel!
     
     //MARK: Objects
     let dateFormatter = DateFormatter()
@@ -39,15 +44,17 @@ class detailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureReserveButton()
-       buttonCornerRadious(buttons: buttons)
+        buttonCornerRadious(buttons: buttons)
         summaryText.layer.cornerRadius = 10
         summaryText.layer.masksToBounds = true
         summaryText.addShadowToTextField()
-        summaryText.isHidden = true
+        checkMark.isHidden = true
         summaryLabel.isHidden = true
-        reserveButton.isHidden = true
+        summaryText.isHidden = true
+        
+      
         configureActivity()
-        containerView.isHidden = true
+        
         
     }
   
@@ -108,7 +115,13 @@ class detailViewController: UIViewController {
     @IBAction func rezerveEtButtonClicked(_ sender: UIButton) {
         //Belirtilen tarih ve berber boş mu dolu mu kontrol et - > checkAvalibility()
         activityIndicator.startAnimating()
-        checkAvalibility(name: nameText.text ?? "nil", berber: berberName, date: dateAndTimeText.text ?? "nil")
+        if summaryText.text == "" || nameText.text == "" || berberName == "" {
+            makeAllert(titleInput: "Uyarı", messageInput: "Eksik bilgi girdiniz")
+            activityIndicator.stopAnimating()
+        }else{
+            checkAvalibility(name: nameText.text ?? "nil", berber: berberName, date: dateAndTimeText.text ?? "nil")
+            
+        }
         
         
     }
@@ -130,6 +143,7 @@ class detailViewController: UIViewController {
             }else{
                 //Eğer boşsa database'e kaydet.
                 self.saveToDatabase(name: name, berber: berber, date: date)
+               
             }
 
           // ...
@@ -149,7 +163,16 @@ class detailViewController: UIViewController {
         
         let stationsRef = database.child("byMakas") //Eğer yeni bir ref'e eklenicekse. örn xberber "byMakas" ismi değişicek
         stationsRef.child(tamRandevu).setValue(object)
-        containerView.isHidden = false
+        checkMark.isHidden = false
+        summaryLabel.isHidden = false
+        summaryText.isHidden = false
+        reserveButton.isHidden = true
+        checkMark.loadGif(name: "giphy")
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5.2) {
+            self.checkMark.image = UIImage(named: "checkMArk")
+        }
+       
         activityIndicator.stopAnimating()
         
         
@@ -161,9 +184,7 @@ class detailViewController: UIViewController {
             makeAllert(titleInput: "Uyarı", messageInput: "Eksik bilgi girdiniz")
         }else{
             summaryText.text = "İsim Soyad : \(nameText.text ?? "nil")"+"\n"+"Berber : \(berberName)"+"\n"+"Tarih : \(dateAndTimeText.text ?? "nil")"
-            summaryLabel.isHidden = false
-            summaryText.isHidden = false
-            reserveButton.isHidden = false
+            
         }
     }
     
