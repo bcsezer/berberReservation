@@ -11,6 +11,7 @@
 		3AEDA15D2B25C9F6A502492B /* Pods_berber_berberUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56D2E5A67DC5B102BCFE9BD /* Pods_berber_berberUITests.framework */; };
 		60907B157D20F36E43054ADA /* Pods_berberTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAB8266AC2172BED580CCC74 /* Pods_berberTests.framework */; };
 		A84FEFB02558937C0001E27D /* popUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84FEFAF2558937B0001E27D /* popUp.swift */; };
+		A860A2502559434D0093E889 /* reserveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A860A24F2559434D0093E889 /* reserveView.swift */; };
 		A8844D392541F57200502B74 /* detailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8844D382541F57200502B74 /* detailViewController.swift */; };
 		A8844D3E2542166100502B74 /* locationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8844D3D2542166100502B74 /* locationViewController.swift */; };
 		A8844D442542378C00502B74 /* iletisimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8844D432542378C00502B74 /* iletisimViewController.swift */; };
@@ -49,6 +50,7 @@
 		289E8B461C1FB254A812BACF /* Pods-berber-berberUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-berber-berberUITests.release.xcconfig"; path = "Target Support Files/Pods-berber-berberUITests/Pods-berber-berberUITests.release.xcconfig"; sourceTree = "<group>"; };
 		577EDF4571011D302A5BB54C /* Pods-berber.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-berber.release.xcconfig"; path = "Target Support Files/Pods-berber/Pods-berber.release.xcconfig"; sourceTree = "<group>"; };
 		A84FEFAF2558937B0001E27D /* popUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popUp.swift; sourceTree = "<group>"; };
+		A860A24F2559434D0093E889 /* reserveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reserveView.swift; sourceTree = "<group>"; };
 		A8844D382541F57200502B74 /* detailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailViewController.swift; sourceTree = "<group>"; };
 		A8844D3D2542166100502B74 /* locationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationViewController.swift; sourceTree = "<group>"; };
 		A8844D432542378C00502B74 /* iletisimViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iletisimViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +117,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A860A24A255932250093E889 /* popUpClass */ = {
+			isa = PBXGroup;
+			children = (
+				A84FEFAF2558937B0001E27D /* popUp.swift */,
+			);
+			path = popUpClass;
+			sourceTree = "<group>";
+		};
+		A860A24E2559432B0093E889 /* Rezervasyon View'ı */ = {
+			isa = PBXGroup;
+			children = (
+				A860A24F2559434D0093E889 /* reserveView.swift */,
+			);
+			path = "Rezervasyon View'ı";
+			sourceTree = "<group>";
+		};
 		A8844D422542368600502B74 /* menuViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,7 +170,8 @@
 		A8C2F6B02538F1BE0081852E /* berber */ = {
 			isa = PBXGroup;
 			children = (
-				A84FEFAF2558937B0001E27D /* popUp.swift */,
+				A860A24E2559432B0093E889 /* Rezervasyon View'ı */,
+				A860A24A255932250093E889 /* popUpClass */,
 				A8844D422542368600502B74 /* menuViewControllers */,
 				A8C2F6B12538F1BE0081852E /* AppDelegate.swift */,
 				A8C2F6B32538F1BE0081852E /* SceneDelegate.swift */,
@@ -437,6 +456,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8844D51254237CE00502B74 /* galeriViewController.swift in Sources */,
+				A860A2502559434D0093E889 /* reserveView.swift in Sources */,
 				A8C2F6B62538F1BE0081852E /* ViewController.swift in Sources */,
 				A8844D4C2542379A00502B74 /* hakkimizdaViewController.swift in Sources */,
 				A8C2F6B22538F1BE0081852E /* AppDelegate.swift in Sources */,

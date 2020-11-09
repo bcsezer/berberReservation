@@ -10,7 +10,8 @@ import Firebase
 
 class detailViewController: UIViewController {
    
-    
+    //MARK: İnitialize database - ref
+    private let database = Database.database().reference()
     
     
     //MARK: Properties
@@ -19,14 +20,13 @@ class detailViewController: UIViewController {
     @IBOutlet weak var summaryText: UITextView!
     @IBOutlet weak var summaryLabel: UILabel!
     @IBOutlet weak var reserveButton: UIButton!
-    
     @IBOutlet var buttons: [UIButton]!
-    
     var berberName = ""
     
     //MARK: Objects
     let dateFormatter = DateFormatter()
     let datePicker = UIDatePicker()
+    var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +45,7 @@ class detailViewController: UIViewController {
         summaryText.isHidden = true
         summaryLabel.isHidden = true
         reserveButton.isHidden = true
+        configureActivity()
         
        
     }
@@ -96,17 +97,80 @@ class detailViewController: UIViewController {
         
         self.dateAndTimeText.text = dateFormatter.string(from: datePicker.date)
         
-        summaryText.text = "İsim Soyad : \(nameText.text ?? "nil")"+"\n"+"Berber : \(berberName)"+"\n"+"Tarih : \(dateAndTimeText.text ?? "nil")"
-        summaryLabel.isHidden = false
-        summaryText.isHidden = false
-        reserveButton.isHidden = false
-        
-        let popup = popUp()
-        view.addSubview(popup)
+        doneButtonEmptyCheck()
         
         view.endEditing(true)
         
     }
+    
+    //MARK:Rezerve et butonuna tıklama eylemi
+    @IBAction func rezerveEtButtonClicked(_ sender: UIButton) {
+        //Belirtilen tarih ve berber boş mu dolu mu kontrol et - > checkAvalibility()
+        activityIndicator.startAnimating()
+        checkAvalibility(name: nameText.text ?? "nil", berber: berberName, date: dateAndTimeText.text ?? "nil")
+        
+        
+    }
+    
+    ///seçilen tarih boş mu değil mi kontrolü
+    func checkAvalibility(name:String,berber:String,date:String){
+        let tamRandevu = date+" "+berber
+        //database.child("byMakas") ulaşmak istediğimiz child'ı temsil ediyor eğer bu isim değişicekse erişilmek istenen ref ismi doğru yazılmalı.
+        database.child("byMakas").child(tamRandevu).observeSingleEvent(of: .value, with: { (snapshot) in
+          // Get user value
+          let value = snapshot.value as? NSDictionary
+          let randevu = value?["tamRandevu"] as? String ?? ""
+            
+            if randevu == tamRandevu{
+                
+                print("Bu randevu Dolu")
+                self.makeAllert(titleInput: "Randevu saati dolu", messageInput: "Randevu saati dolu. Berberinizi ya da saati yeniden seçiniz.")
+                self.activityIndicator.stopAnimating()
+            }else{
+                //Eğer boşsa database'e kaydet.
+                self.saveToDatabase(name: name, berber: berber, date: date)
+            }
+
+          // ...
+          }) { (error) in
+            print(error.localizedDescription)
+        }
+        
+    }
+    
+    //Database'e kayıt
+    func saveToDatabase(name:String,berber:String,date:String){
+        
+        let tamRandevu = date+" "+berber
+        let object : [String:Any] = ["name":name ,"berber":berber ,"date":date ,"tamRandevu":tamRandevu]
+        
+        
+        
+        let stationsRef = database.child("byMakas") //Eğer yeni bir ref'e eklenicekse. örn xberber "byMakas" ismi değişicek
+        stationsRef.child(tamRandevu).setValue(object)
+        activityIndicator.stopAnimating()
+        
+        
+    }
+    
+    ///Gerekli bilgiler eksik mi değil mi kontrolü
+    func doneButtonEmptyCheck(){
+        if summaryText.text == "" || nameText.text == "" || berberName == "" {
+            makeAllert(titleInput: "Uyarı", messageInput: "Eksik bilgi girdiniz")
+        }else{
+            summaryText.text = "İsim Soyad : \(nameText.text ?? "nil")"+"\n"+"Berber : \(berberName)"+"\n"+"Tarih : \(dateAndTimeText.text ?? "nil")"
+            summaryLabel.isHidden = false
+            summaryText.isHidden = false
+            reserveButton.isHidden = false
+        }
+    }
+    
+    func makeAllert(titleInput :String,messageInput:String){
+            let alert = UIAlertController(title: titleInput, message: messageInput, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Tamam", style: UIAlertAction.Style.cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+    }
+    
     //MARK: When user press done in toolbar Dismiss toolbar
     @objc func doneBerberListPressed(){
         
@@ -167,6 +231,23 @@ class detailViewController: UIViewController {
         //In short- Dismiss the active keyboard.
         view.endEditing(true)
     }
+    
+    
+    func configureActivity(){
+          activityIndicator.center = self.view.center
+          activityIndicator.hidesWhenStopped = true
+          activityIndicator.style = UIActivityIndicatorView.Style.large
+          activityIndicator.color = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+          activityIndicator.center = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.midY)
+          activityIndicator.autoresizingMask = [
+              .flexibleLeftMargin,
+              .flexibleRightMargin,
+              .flexibleTopMargin,
+              .flexibleBottomMargin
+          ]
+          self.view.addSubview(activityIndicator)
+          
+      }
 
 }
 

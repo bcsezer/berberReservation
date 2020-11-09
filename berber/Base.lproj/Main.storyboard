@@ -479,9 +479,12 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="3UU-xq-7RD"/>
                                 </constraints>
-                                <state key="normal" title="Rezerve etmeyenin amk">
+                                <state key="normal" title="Rezerve et">
                                     <color key="titleColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="rezerveEtButtonClicked:" destination="yAv-WI-dyX" eventType="touchUpInside" id="oJV-EQ-Ldo"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pw9-ih-XWo"/>
