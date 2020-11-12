@@ -9,9 +9,10 @@ import UIKit
 import SwiftPhotoGallery
 import Firebase
 
-class ViewController: UIViewController {
+class HomePageViewController: UIViewController {
 
- 
+    @IBOutlet var buttonsCollection: [UIButton]!
+    
     
     let imageNames = ["resim1", "resim2", "resim3","resim4","resim5"]
     
@@ -24,6 +25,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var buttonContaierView: UIView!
     @IBOutlet weak var aboutButton: UIButton!
     
+    
+    @IBOutlet weak var makasLogo: UIImageView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -32,17 +37,27 @@ class ViewController: UIViewController {
   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        configureButtons(button: rezerveEtButton)
+      configureReserveButton()
         configureButtons(button: galeriButton)
         configureButtons(button: aboutButton)
         configureButtons(button: konumButton)
         configureButtons(button: iletisimButton)
-        buttonContaierView.layer.cornerRadius = 60
+        buttonContaierView.layer.cornerRadius = 30
         buttonContaierView.layer.masksToBounds = true
         
-      
-       
+        makasLogo.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(goToLogin))
+        tapGesture.numberOfTapsRequired = 3
+        
+        makasLogo.addGestureRecognizer(tapGesture)
      
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        
+    }
+    @objc func goToLogin(){
+        performSegue(withIdentifier: "toAdminLogin", sender: self)
     }
     @IBAction func galeriButtonClicked(_ sender: UIButton) {
         
@@ -64,6 +79,7 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "hakkimizdaVC", sender: self)
     }
     
+    
     func configureGalleryMedia(){
         
         let gallery = SwiftPhotoGallery(delegate: self, dataSource: self)
@@ -84,7 +100,7 @@ class ViewController: UIViewController {
     
     
     func configureReserveButton(){
-        rezerveEtButton.layer.cornerRadius = 1
+        rezerveEtButton.layer.cornerRadius = 30
         rezerveEtButton.layer.masksToBounds = true
         rezerveEtButton.layer.borderWidth = 1
         rezerveEtButton.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
@@ -105,7 +121,7 @@ class ViewController: UIViewController {
 }
 
 // MARK: SwiftPhotoGalleryDataSource Methods
-extension ViewController:SwiftPhotoGalleryDataSource, SwiftPhotoGalleryDelegate{
+extension HomePageViewController:SwiftPhotoGalleryDataSource, SwiftPhotoGalleryDelegate{
     func numberOfImagesInGallery(gallery: SwiftPhotoGallery) -> Int {
         imageNames.count
     }

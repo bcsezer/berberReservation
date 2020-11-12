@@ -169,7 +169,7 @@ class detailViewController: UIViewController {
         reserveButton.isHidden = true
         checkMark.loadGif(name: "giphy")
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5.2) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4.2) {
             self.checkMark.image = UIImage(named: "checkMArk")
         }
        
@@ -209,14 +209,14 @@ class detailViewController: UIViewController {
         for btn in buttons {
             
             if btn == sender {
-                btn.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                btn.setTitleColor(.black, for: .normal)
+                btn.backgroundColor = #colorLiteral(red: 0.1098039216, green: 0.1098039216, blue: 0.1098039216, alpha: 1)
+                btn.setTitleColor(.white, for: .normal)
                 addShadowToButton(btn: btn)
                 self.berberName = btn.titleLabel?.text ?? "Nil"
 //                #colorLiteral(red: 0.6128053617, green: 0.6128053617, blue: 0.6128053617, alpha: 1)
             } else {
-                btn.backgroundColor = #colorLiteral(red: 0.1098039216, green: 0.1098039216, blue: 0.1098039216, alpha: 1)
-                btn.setTitleColor(.white, for: .normal)
+                btn.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                btn.setTitleColor(.black, for: .normal)
                 btn.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
                 btn.layer.shadowColor = UIColor.white.cgColor
             }

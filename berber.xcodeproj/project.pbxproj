@@ -10,6 +10,7 @@
 		2612E52602848332D8C76591 /* Pods_berber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44F2B7B1AEB302973628B55 /* Pods_berber.framework */; };
 		3AEDA15D2B25C9F6A502492B /* Pods_berber_berberUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56D2E5A67DC5B102BCFE9BD /* Pods_berber_berberUITests.framework */; };
 		60907B157D20F36E43054ADA /* Pods_berberTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAB8266AC2172BED580CCC74 /* Pods_berberTests.framework */; };
+		A8108FF9255D8D180090281B /* adminLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8108FF8255D8D180090281B /* adminLoginViewController.swift */; };
 		A84FEFB02558937C0001E27D /* popUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84FEFAF2558937B0001E27D /* popUp.swift */; };
 		A860A2502559434D0093E889 /* reserveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A860A24F2559434D0093E889 /* reserveView.swift */; };
 		A860A27725595BAC0093E889 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A860A27625595BAC0093E889 /* PopUpViewController.swift */; };
@@ -21,9 +22,12 @@
 		A8844D442542378C00502B74 /* iletisimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8844D432542378C00502B74 /* iletisimViewController.swift */; };
 		A8844D4C2542379A00502B74 /* hakkimizdaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8844D4B2542379A00502B74 /* hakkimizdaViewController.swift */; };
 		A8844D51254237CE00502B74 /* galeriViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8844D50254237CE00502B74 /* galeriViewController.swift */; };
+		A8C1DDE3255DA3A800C61A56 /* ReservationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C1DDE2255DA3A700C61A56 /* ReservationListViewController.swift */; };
+		A8C1DDE8255DC24E00C61A56 /* reservationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C1DDE7255DC24E00C61A56 /* reservationCell.swift */; };
+		A8C1DDED255DC91300C61A56 /* userClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C1DDEC255DC91300C61A56 /* userClass.swift */; };
 		A8C2F6B22538F1BE0081852E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C2F6B12538F1BE0081852E /* AppDelegate.swift */; };
 		A8C2F6B42538F1BE0081852E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C2F6B32538F1BE0081852E /* SceneDelegate.swift */; };
-		A8C2F6B62538F1BE0081852E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C2F6B52538F1BE0081852E /* ViewController.swift */; };
+		A8C2F6B62538F1BE0081852E /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C2F6B52538F1BE0081852E /* HomePageViewController.swift */; };
 		A8C2F6B92538F1BE0081852E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8C2F6B72538F1BE0081852E /* Main.storyboard */; };
 		A8C2F6BB2538F1C20081852E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8C2F6BA2538F1C20081852E /* Assets.xcassets */; };
 		A8C2F6BE2538F1C20081852E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8C2F6BC2538F1C20081852E /* LaunchScreen.storyboard */; };
@@ -53,6 +57,7 @@
 		01F3E11ED1F9F85E169F19A9 /* Pods-berber.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-berber.debug.xcconfig"; path = "Target Support Files/Pods-berber/Pods-berber.debug.xcconfig"; sourceTree = "<group>"; };
 		289E8B461C1FB254A812BACF /* Pods-berber-berberUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-berber-berberUITests.release.xcconfig"; path = "Target Support Files/Pods-berber-berberUITests/Pods-berber-berberUITests.release.xcconfig"; sourceTree = "<group>"; };
 		577EDF4571011D302A5BB54C /* Pods-berber.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-berber.release.xcconfig"; path = "Target Support Files/Pods-berber/Pods-berber.release.xcconfig"; sourceTree = "<group>"; };
+		A8108FF8255D8D180090281B /* adminLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adminLoginViewController.swift; sourceTree = "<group>"; };
 		A84FEFAF2558937B0001E27D /* popUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popUp.swift; sourceTree = "<group>"; };
 		A860A24F2559434D0093E889 /* reserveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reserveView.swift; sourceTree = "<group>"; };
 		A860A27625595BAC0093E889 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
@@ -64,10 +69,13 @@
 		A8844D432542378C00502B74 /* iletisimViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iletisimViewController.swift; sourceTree = "<group>"; };
 		A8844D4B2542379A00502B74 /* hakkimizdaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hakkimizdaViewController.swift; sourceTree = "<group>"; };
 		A8844D50254237CE00502B74 /* galeriViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = galeriViewController.swift; sourceTree = "<group>"; };
+		A8C1DDE2255DA3A700C61A56 /* ReservationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationListViewController.swift; sourceTree = "<group>"; };
+		A8C1DDE7255DC24E00C61A56 /* reservationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reservationCell.swift; sourceTree = "<group>"; };
+		A8C1DDEC255DC91300C61A56 /* userClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userClass.swift; sourceTree = "<group>"; };
 		A8C2F6AE2538F1BE0081852E /* berber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = berber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8C2F6B12538F1BE0081852E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8C2F6B32538F1BE0081852E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A8C2F6B52538F1BE0081852E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A8C2F6B52538F1BE0081852E /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		A8C2F6B82538F1BE0081852E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A8C2F6BA2538F1C20081852E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8C2F6BD2538F1C20081852E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -154,6 +162,16 @@
 			path = menuViewControllers;
 			sourceTree = "<group>";
 		};
+		A8C1DDC6255D9DFF00C61A56 /* loginPages */ = {
+			isa = PBXGroup;
+			children = (
+				A8108FF8255D8D180090281B /* adminLoginViewController.swift */,
+				A8C1DDE2255DA3A700C61A56 /* ReservationListViewController.swift */,
+				A8C1DDE7255DC24E00C61A56 /* reservationCell.swift */,
+			);
+			path = loginPages;
+			sourceTree = "<group>";
+		};
 		A8C2F6A52538F1BE0081852E = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +197,7 @@
 		A8C2F6B02538F1BE0081852E /* berber */ = {
 			isa = PBXGroup;
 			children = (
+				A8C1DDC6255D9DFF00C61A56 /* loginPages */,
 				A860A2802559C8470093E889 /* giphy.gif */,
 				A860A27B2559C4A20093E889 /* tenor.gif */,
 				A860A28E2559CDB00093E889 /* checkMArk.png */,
@@ -187,12 +206,13 @@
 				A8844D422542368600502B74 /* menuViewControllers */,
 				A8C2F6B12538F1BE0081852E /* AppDelegate.swift */,
 				A8C2F6B32538F1BE0081852E /* SceneDelegate.swift */,
-				A8C2F6B52538F1BE0081852E /* ViewController.swift */,
+				A8C2F6B52538F1BE0081852E /* HomePageViewController.swift */,
 				A8C2F6B72538F1BE0081852E /* Main.storyboard */,
 				A8C2F6BA2538F1C20081852E /* Assets.xcassets */,
 				A8C2F6BC2538F1C20081852E /* LaunchScreen.storyboard */,
 				A8C2F6BF2538F1C20081852E /* Info.plist */,
 				A8EA238425547A8700180342 /* GoogleService-Info.plist */,
+				A8C1DDEC255DC91300C61A56 /* userClass.swift */,
 			);
 			path = berber;
 			sourceTree = "<group>";
@@ -472,12 +492,16 @@
 			files = (
 				A8844D51254237CE00502B74 /* galeriViewController.swift in Sources */,
 				A860A2502559434D0093E889 /* reserveView.swift in Sources */,
-				A8C2F6B62538F1BE0081852E /* ViewController.swift in Sources */,
+				A8108FF9255D8D180090281B /* adminLoginViewController.swift in Sources */,
+				A8C1DDE3255DA3A800C61A56 /* ReservationListViewController.swift in Sources */,
+				A8C2F6B62538F1BE0081852E /* HomePageViewController.swift in Sources */,
 				A860A27725595BAC0093E889 /* PopUpViewController.swift in Sources */,
 				A8844D4C2542379A00502B74 /* hakkimizdaViewController.swift in Sources */,
 				A8C2F6B22538F1BE0081852E /* AppDelegate.swift in Sources */,
 				A8844D3E2542166100502B74 /* locationViewController.swift in Sources */,
+				A8C1DDED255DC91300C61A56 /* userClass.swift in Sources */,
 				A8C2F6B42538F1BE0081852E /* SceneDelegate.swift in Sources */,
+				A8C1DDE8255DC24E00C61A56 /* reservationCell.swift in Sources */,
 				A8844D442542378C00502B74 /* iletisimViewController.swift in Sources */,
 				A8844D392541F57200502B74 /* detailViewController.swift in Sources */,
 				A84FEFB02558937C0001E27D /* popUp.swift in Sources */,
