@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var konumButton: UIButton!
     @IBOutlet weak var iletisimButton: UIButton!
     
+    @IBOutlet weak var buttonContaierView: UIView!
     @IBOutlet weak var aboutButton: UIButton!
     
     override func viewDidLoad() {
@@ -31,11 +32,13 @@ class ViewController: UIViewController {
   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        configureReserveButton()
+        configureButtons(button: rezerveEtButton)
         configureButtons(button: galeriButton)
         configureButtons(button: aboutButton)
         configureButtons(button: konumButton)
         configureButtons(button: iletisimButton)
+        buttonContaierView.layer.cornerRadius = 60
+        buttonContaierView.layer.masksToBounds = true
         
       
        
@@ -81,7 +84,7 @@ class ViewController: UIViewController {
     
     
     func configureReserveButton(){
-        rezerveEtButton.layer.cornerRadius = 10
+        rezerveEtButton.layer.cornerRadius = 1
         rezerveEtButton.layer.masksToBounds = true
         rezerveEtButton.layer.borderWidth = 1
         rezerveEtButton.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
