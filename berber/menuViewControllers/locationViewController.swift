@@ -33,7 +33,7 @@ class locationViewController: UIViewController,MKMapViewDelegate,CLLocationManag
         
         let a = MKPointAnnotation()
         a.coordinate = coordinates
-        a.title = "By Makar , Adres: Türkali Mahallesi , Türkali, Köprü Sk. No:14/B1634357, Beşiktaş/İstanbul"
+        a.title = "By Makas , Adres: Türkali Mahallesi , Türkali, Köprü Sk. No:14/B1634357, Beşiktaş/İstanbul"
         
         mapView.addAnnotation(a)
         mapView.setRegion(region, animated: true)

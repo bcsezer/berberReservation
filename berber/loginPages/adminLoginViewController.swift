@@ -46,5 +46,7 @@ class adminLoginViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "Tamam", style: UIAlertAction.Style.cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
     }
+    
+    
 
 }

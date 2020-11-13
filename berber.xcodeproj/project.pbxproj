@@ -172,6 +172,14 @@
 			path = loginPages;
 			sourceTree = "<group>";
 		};
+		A8C1DDF1255EC15200C61A56 /* user Class */ = {
+			isa = PBXGroup;
+			children = (
+				A8C1DDEC255DC91300C61A56 /* userClass.swift */,
+			);
+			path = "user Class";
+			sourceTree = "<group>";
+		};
 		A8C2F6A52538F1BE0081852E = {
 			isa = PBXGroup;
 			children = (
@@ -212,7 +220,7 @@
 				A8C2F6BC2538F1C20081852E /* LaunchScreen.storyboard */,
 				A8C2F6BF2538F1C20081852E /* Info.plist */,
 				A8EA238425547A8700180342 /* GoogleService-Info.plist */,
-				A8C1DDEC255DC91300C61A56 /* userClass.swift */,
+				A8C1DDF1255EC15200C61A56 /* user Class */,
 			);
 			path = berber;
 			sourceTree = "<group>";

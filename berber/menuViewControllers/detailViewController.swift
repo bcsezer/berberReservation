@@ -18,6 +18,7 @@ class detailViewController: UIViewController {
     //MARK: Properties
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var dateAndTimeText: UITextField!
+    var dateLabelWithoutTime = ""
     
   
     @IBOutlet var buttons: [UIButton]!
@@ -72,7 +73,7 @@ class detailViewController: UIViewController {
     }
     
     //MARK: Create datePicker for toolBar
-    func createDatepicker(){
+    func createDatepicker() {
         
         datePicker.preferredDatePickerStyle = .wheels
         dateAndTimeText.inputView = datePicker
@@ -105,6 +106,12 @@ class detailViewController: UIViewController {
         
         self.dateAndTimeText.text = dateFormatter.string(from: datePicker.date)
         
+        
+        let split =  dateAndTimeText.text!.split(separator: " ")
+     
+        dateLabelWithoutTime = split[0]+" "+split[1]+" "+split[2]
+        
+        
         doneButtonEmptyCheck()
         
         view.endEditing(true)
@@ -119,6 +126,7 @@ class detailViewController: UIViewController {
             makeAllert(titleInput: "Uyarı", messageInput: "Eksik bilgi girdiniz")
             activityIndicator.stopAnimating()
         }else{
+            
             checkAvalibility(name: nameText.text ?? "nil", berber: berberName, date: dateAndTimeText.text ?? "nil")
             
         }
@@ -142,7 +150,7 @@ class detailViewController: UIViewController {
                 self.activityIndicator.stopAnimating()
             }else{
                 //Eğer boşsa database'e kaydet.
-                self.saveToDatabase(name: name, berber: berber, date: date)
+                self.saveToDatabase(name: name, berber: berber, date: date,dateWithoutTime: self.dateLabelWithoutTime)
                
             }
 
@@ -153,11 +161,12 @@ class detailViewController: UIViewController {
         
     }
     
+  
     //Database'e kayıt
-    func saveToDatabase(name:String,berber:String,date:String){
+    func saveToDatabase(name:String,berber:String,date:String,dateWithoutTime:String){
         
         let tamRandevu = date+" "+berber
-        let object : [String:Any] = ["name":name ,"berber":berber ,"date":date ,"tamRandevu":tamRandevu]
+        let object : [String:Any] = ["name":name ,"berberAd":berber ,"tarih":dateWithoutTime ,"tamRandevu":tamRandevu]
         
         
         
@@ -286,4 +295,21 @@ extension UITextView {
    
     
    }
+}
+extension String {
+
+    func split(regex pattern: String) -> [String] {
+
+        guard let re = try? NSRegularExpression(pattern: pattern, options: [])
+            else { return [] }
+
+        let nsString = self as NSString // needed for range compatibility
+        let stop = "<SomeStringThatYouDoNotExpectToOccurInSelf>"
+        let modifiedString = re.stringByReplacingMatches(
+            in: self,
+            options: [],
+            range: NSRange(location: 0, length: nsString.length),
+            withTemplate: stop)
+        return modifiedString.components(separatedBy: stop)
+    }
 }
