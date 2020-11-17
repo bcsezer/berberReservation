@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import SwiftGifOrigin
 
-class detailViewController: UIViewController {
+class detailViewController: UIViewController, UITextFieldDelegate {
    
     //MARK: İnitialize database - ref
     private let database = Database.database().reference()
@@ -49,7 +49,8 @@ class detailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+        
+        phoneText.delegate = self
         createDatepicker()
         initializeHideKeyboard()
     }
@@ -57,36 +58,47 @@ class detailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureReserveButton()
+        
         buttonCornerRadious(buttons: buttons)
         summaryText.layer.cornerRadius = 10
         summaryText.layer.masksToBounds = true
         summaryText.addShadowToTextField()
-        checkMark.isHidden = true
-        summaryLabel.isHidden = true
-        summaryText.isHidden = true
-        reserveButton.isEnabled = true
-        
-       
-      
-        calculateDateInterval()
+        phoneText.keyboardType = .numberPad
+
         iptalEtButton.setAttributedTitle(attributedString, for: .normal)
        
-      
         configureActivity()
         addShadowToNavBar()
+        detectReservationNotNilOrNil()
+        
+      
         
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.layer.shadowColor = UIColor.clear.cgColor
     }
+    
+  
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            guard let textFieldText = phoneText.text,
+                let rangeOfTextToReplace = Range(range, in: textFieldText) else {
+                    return false
+            }
+            let substringToReplace = textFieldText[rangeOfTextToReplace]
+            let count = textFieldText.count - substringToReplace.count + string.count
+            return count <= 11
+        }
+    
     func addShadowToNavBar(){
+        
         self.navigationController?.navigationBar.layer.shadowColor = UIColor.white.cgColor
             self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
             self.navigationController?.navigationBar.layer.shadowRadius = 4.0
             self.navigationController?.navigationBar.layer.shadowOpacity = 1.0
             self.navigationController?.navigationBar.layer.masksToBounds = false
     }
+    
     func configureTextfield(textview:UITextField){
         //Mark:TextField'ın altına çizgi
         let bottomLine = CALayer()
@@ -100,57 +112,37 @@ class detailViewController: UIViewController {
         
     }
     
-    func calculateDateInterval(){
-        //read
-        if userDate.object(forKey: "Date") != nil {
+  
+    
+    func detectReservationNotNilOrNil(){
+        
+      
+        
+        if userDate.object(forKey: "Date") != nil { //Eğer date nil değilse demek ki bir randevusu var
             
-            let reservationDate = userDate.object(forKey: "Date") as! Date
-            let currentDate = Date()
+            let reservationDate = userDate.object(forKey: "Date") as! Date //Randevu tarihi al
+            let currentDate = Date() //Bugünün tarihini al
             
-            if currentDate >= reservationDate   {
-                nameText.isHidden = false
-                phoneText.isHidden = false
-                buttonsView.isHidden = false
-                summaryText.isHidden = true
-                summaryLabel.isHidden = true
-                checkMark.isHidden = true
-                
-                iptalView.isHidden = true
-                
-            }else{
-                
+            if (currentDate >= reservationDate) { //Bugünün tarihi, rezervasyon yarihinden büyükse ya geçmişse
+                //Demekki randevusu var ama tarihi geçmiş
                 let userInfo = userDate.dictionary(forKey: "userInformation")
-                nameText.text = userInfo!["name"] as? String
-                phoneText.text = userInfo!["phoneNumber"] as? String
-                dateAndTimeText.text = userInfo!["tarih"] as? String
+                let tamRandevu = userInfo!["tamRandevu"] as? String
                 
+                let stationsRef = database.child("byMakas") //Eğer yeni bir ref'e eklenicekse. örn xberber "byMakas" ismi değişicek
+                stationsRef.child(tamRandevu!).setValue(nil)
+                updateNoUI()
+                userDate.removeObject(forKey: "userInformation")
+                userDate.removeObject(forKey: "Date")
                 
-                nameText.isUserInteractionEnabled = false
-                phoneText.isUserInteractionEnabled = false
-                dateAndTimeText.isUserInteractionEnabled = false
-                
-                checkMark.isHidden = false
-                summaryText.isHidden = false
-                summaryLabel.isHidden = false
-                checkMark.isHidden = false
-                reserveButton.isHidden = true
-                buttonsView.isHidden = true
-                iptalView.isHidden = false
-                
-                
-                
+            }else if (currentDate <= reservationDate)  {
+                //Randevusu var ve tarihi geçmemiş
+                updateReservationUI()
+                checkMark.image = UIImage(named: "checkMArk")
             }
-           
             
         }else{
-            nameText.isUserInteractionEnabled = true
-            phoneText.isUserInteractionEnabled = true
-            dateAndTimeText.isUserInteractionEnabled = true
             
-            summaryText.isHidden = true
-            summaryLabel.isHidden = true
-            buttonsView.isHidden = false
-            iptalView.isHidden = true
+            updateNoUI()
         }
     }
     
@@ -182,20 +174,74 @@ class detailViewController: UIViewController {
     }
     
     @IBAction func iptalEtButton(_ sender: UIButton) {
-       print("tıklıyorum")
+        
+        activityIndicator.startAnimating()
+        
+       
         let userInfo = userDate.dictionary(forKey: "userInformation")
         
         let tamRandevu = userInfo!["tamRandevu"] as? String
-        print(tamRandevu)
-       
-        let stationsRef = database.child("byMakas") //Eğer yeni bir ref'e eklenicekse. örn xberber "byMakas" ismi değişicek
-        stationsRef.child(tamRandevu!).setValue(nil)
+      
         userDate.removeObject(forKey: "userInformation")
         userDate.removeObject(forKey: "Date")
-        calculateDateInterval()
+        
+        updateNoUI()
+        
+        let stationsRef = database.child("byMakas") //Eğer yeni bir ref'e eklenicekse. örn xberber "byMakas" ismi değişicek
+        stationsRef.child(tamRandevu!).setValue(nil)
+        
+        
         
     }
     
+    func updateNoUI(){
+        
+        nameText.text = ""
+        phoneText.text = ""
+        dateAndTimeText.text = ""
+        
+        nameText.isUserInteractionEnabled = true
+        phoneText.isUserInteractionEnabled = true
+        dateAndTimeText.isUserInteractionEnabled = true
+        
+        buttonsView.isHidden = false
+        checkMark.isHidden = true
+        summaryText.isHidden = true
+        summaryLabel.isHidden = true
+        reserveButton.isHidden = false
+        iptalView.isHidden = true
+        
+        activityIndicator.stopAnimating()
+        
+        
+    
+    }
+ 
+    
+    func  updateReservationUI(){
+        
+        let userInfo = userDate.dictionary(forKey: "userInformation")
+        
+       
+        
+        nameText.text = userInfo!["name"] as? String
+        phoneText.text = userInfo!["phoneNumber"] as? String
+        dateAndTimeText.text = userInfo!["tarih"] as? String
+        berberName =  (userInfo!["berberAd"] as? String)!
+        
+        summaryText.text = "İsim Soyad : \(nameText.text ?? "nil")"+"\n"+"Berber : \(berberName)"+"\n"+"Tarih : \(dateAndTimeText.text ?? "nil")"
+        
+        nameText.isUserInteractionEnabled = false
+        phoneText.isUserInteractionEnabled = false
+        dateAndTimeText.isUserInteractionEnabled = false
+        
+        checkMark.isHidden = false
+        summaryText.isHidden = false
+        summaryLabel.isHidden = false
+        reserveButton.isHidden = true
+        buttonsView.isHidden = true
+        iptalView.isHidden = false
+    }
     
     //MARK: what happens When user press done in toolbar
     @objc func donePressed(){
@@ -222,15 +268,20 @@ class detailViewController: UIViewController {
         //Belirtilen tarih ve berber boş mu dolu mu kontrol et - > checkAvalibility()
         activityIndicator.startAnimating()
         if summaryText.text == "" || nameText.text == "" || berberName == "" {
+            
             makeAllert(titleInput: "Uyarı", messageInput: "Eksik bilgi girdiniz")
             activityIndicator.stopAnimating()
+            
         }else{
             
             reserveButton.isEnabled = false
             checkAvalibility(name: nameText.text ?? "nil", berber: berberName, date: dateAndTimeText.text ?? "nil", phoneNumber: phoneText.text ?? "nil")
             
-            userDate.set(datePicker.date, forKey: "Date")
+            userDate.set(datePicker.date, forKey: "Date")//Reservasyon tarihini userDefaults'a kaydetme işlemi.
+            
             summaryText.text = "İsim Soyad : \(nameText.text ?? "nil")"+"\n"+"Berber : \(berberName)"+"\n"+"Tarih : \(dateAndTimeText.text ?? "nil")"
+            
+             
             
         }
         
@@ -273,18 +324,15 @@ class detailViewController: UIViewController {
         
         let userobject : [String:String] = ["name":name ,"berberAd":berber ,"tarih":date ,"tamRandevu":tamRandevu,"phoneNumber":phoneNumber]
         
-        userDate.setValue(userobject, forKey: "userInformation")
+        //MARK:Kullanıcının randevu bilgilerini kaydet
+        userDate.set(userobject, forKey: "userInformation")
+        //MARK:Kullanıcı Randevu Tarihi
+        userDate.set(datePicker.date, forKey: "Date")
         
         let stationsRef = database.child("byMakas") //Eğer yeni bir ref'e eklenicekse. örn xberber "byMakas" ismi değişicek
         stationsRef.child(tamRandevu).setValue(object)
-        
-        checkMark.isHidden = false
-        summaryLabel.isHidden = false
-        summaryText.isHidden = false
-        reserveButton.isHidden = true
-        
-        
-        
+        updateReservationUI()
+      
         checkMark.loadGif(name: "giphy")
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4.2) {
