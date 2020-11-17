@@ -14,16 +14,28 @@ class detailViewController: UIViewController {
     //MARK: İnitialize database - ref
     private let database = Database.database().reference()
     
-   
+    let userDate = UserDefaults.standard
+    
+    @IBOutlet weak var buttonsView: UIView!
+    
+    @IBOutlet weak var iptalView: UIView!
+    
     //MARK: Properties
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var dateAndTimeText: UITextField!
     var dateLabelWithoutTime = ""
     
-  
+    @IBOutlet weak var phoneText: UITextField!
+    
     @IBOutlet var buttons: [UIButton]!
     var berberName = ""
     
+    @IBOutlet weak var iptalEtButton: UIButton!
+    let attributedString = NSAttributedString(string: "Randevuyu İptal Et", attributes:[
+        NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16.0),
+        NSAttributedString.Key.foregroundColor : UIColor.red,
+        NSAttributedString.Key.underlineStyle:1.0
+    ])
     //Summary view elements
     @IBOutlet weak var checkMark: UIImageView!
     @IBOutlet weak var reserveButton: UIButton!
@@ -52,13 +64,29 @@ class detailViewController: UIViewController {
         checkMark.isHidden = true
         summaryLabel.isHidden = true
         summaryText.isHidden = true
+        reserveButton.isEnabled = true
         
+       
+      
+        calculateDateInterval()
+        iptalEtButton.setAttributedTitle(attributedString, for: .normal)
+       
       
         configureActivity()
-        
+        addShadowToNavBar()
         
     }
-  
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor.clear.cgColor
+    }
+    func addShadowToNavBar(){
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor.white.cgColor
+            self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            self.navigationController?.navigationBar.layer.shadowRadius = 4.0
+            self.navigationController?.navigationBar.layer.shadowOpacity = 1.0
+            self.navigationController?.navigationBar.layer.masksToBounds = false
+    }
     func configureTextfield(textview:UITextField){
         //Mark:TextField'ın altına çizgi
         let bottomLine = CALayer()
@@ -70,6 +98,60 @@ class detailViewController: UIViewController {
         textview.borderStyle = .none
         textview.layer.addSublayer(bottomLine)
         
+    }
+    
+    func calculateDateInterval(){
+        //read
+        if userDate.object(forKey: "Date") != nil {
+            
+            let reservationDate = userDate.object(forKey: "Date") as! Date
+            let currentDate = Date()
+            
+            if currentDate >= reservationDate   {
+                nameText.isHidden = false
+                phoneText.isHidden = false
+                buttonsView.isHidden = false
+                summaryText.isHidden = true
+                summaryLabel.isHidden = true
+                checkMark.isHidden = true
+                
+                iptalView.isHidden = true
+                
+            }else{
+                
+                let userInfo = userDate.dictionary(forKey: "userInformation")
+                nameText.text = userInfo!["name"] as? String
+                phoneText.text = userInfo!["phoneNumber"] as? String
+                dateAndTimeText.text = userInfo!["tarih"] as? String
+                
+                
+                nameText.isUserInteractionEnabled = false
+                phoneText.isUserInteractionEnabled = false
+                dateAndTimeText.isUserInteractionEnabled = false
+                
+                checkMark.isHidden = false
+                summaryText.isHidden = false
+                summaryLabel.isHidden = false
+                checkMark.isHidden = false
+                reserveButton.isHidden = true
+                buttonsView.isHidden = true
+                iptalView.isHidden = false
+                
+                
+                
+            }
+           
+            
+        }else{
+            nameText.isUserInteractionEnabled = true
+            phoneText.isUserInteractionEnabled = true
+            dateAndTimeText.isUserInteractionEnabled = true
+            
+            summaryText.isHidden = true
+            summaryLabel.isHidden = true
+            buttonsView.isHidden = false
+            iptalView.isHidden = true
+        }
     }
     
     //MARK: Create datePicker for toolBar
@@ -98,6 +180,23 @@ class detailViewController: UIViewController {
         return toolBar
         
     }
+    
+    @IBAction func iptalEtButton(_ sender: UIButton) {
+       print("tıklıyorum")
+        let userInfo = userDate.dictionary(forKey: "userInformation")
+        
+        let tamRandevu = userInfo!["tamRandevu"] as? String
+        print(tamRandevu)
+       
+        let stationsRef = database.child("byMakas") //Eğer yeni bir ref'e eklenicekse. örn xberber "byMakas" ismi değişicek
+        stationsRef.child(tamRandevu!).setValue(nil)
+        userDate.removeObject(forKey: "userInformation")
+        userDate.removeObject(forKey: "Date")
+        calculateDateInterval()
+        
+    }
+    
+    
     //MARK: what happens When user press done in toolbar
     @objc func donePressed(){
         
@@ -127,7 +226,11 @@ class detailViewController: UIViewController {
             activityIndicator.stopAnimating()
         }else{
             
-            checkAvalibility(name: nameText.text ?? "nil", berber: berberName, date: dateAndTimeText.text ?? "nil")
+            reserveButton.isEnabled = false
+            checkAvalibility(name: nameText.text ?? "nil", berber: berberName, date: dateAndTimeText.text ?? "nil", phoneNumber: phoneText.text ?? "nil")
+            
+            userDate.set(datePicker.date, forKey: "Date")
+            summaryText.text = "İsim Soyad : \(nameText.text ?? "nil")"+"\n"+"Berber : \(berberName)"+"\n"+"Tarih : \(dateAndTimeText.text ?? "nil")"
             
         }
         
@@ -135,7 +238,7 @@ class detailViewController: UIViewController {
     }
     
     ///seçilen tarih boş mu değil mi kontrolü
-    func checkAvalibility(name:String,berber:String,date:String){
+    func checkAvalibility(name:String,berber:String,date:String,phoneNumber:String){
         let tamRandevu = date+" "+berber
         //database.child("byMakas") ulaşmak istediğimiz child'ı temsil ediyor eğer bu isim değişicekse erişilmek istenen ref ismi doğru yazılmalı.
         database.child("byMakas").child(tamRandevu).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -150,7 +253,7 @@ class detailViewController: UIViewController {
                 self.activityIndicator.stopAnimating()
             }else{
                 //Eğer boşsa database'e kaydet.
-                self.saveToDatabase(name: name, berber: berber, date: date,dateWithoutTime: self.dateLabelWithoutTime)
+                self.saveToDatabase(name: name, berber: berber, date: date,dateWithoutTime: self.dateLabelWithoutTime, phoneNumber: phoneNumber)
                
             }
 
@@ -163,19 +266,25 @@ class detailViewController: UIViewController {
     
   
     //Database'e kayıt
-    func saveToDatabase(name:String,berber:String,date:String,dateWithoutTime:String){
+    func saveToDatabase(name:String,berber:String,date:String,dateWithoutTime:String,phoneNumber:String){
         
         let tamRandevu = date+" "+berber
-        let object : [String:Any] = ["name":name ,"berberAd":berber ,"tarih":dateWithoutTime ,"tamRandevu":tamRandevu]
+        let object : [String:Any] = ["name":name ,"berberAd":berber ,"tarih":dateWithoutTime ,"tamRandevu":tamRandevu,"phoneNumber":phoneNumber]
         
+        let userobject : [String:String] = ["name":name ,"berberAd":berber ,"tarih":date ,"tamRandevu":tamRandevu,"phoneNumber":phoneNumber]
         
+        userDate.setValue(userobject, forKey: "userInformation")
         
         let stationsRef = database.child("byMakas") //Eğer yeni bir ref'e eklenicekse. örn xberber "byMakas" ismi değişicek
         stationsRef.child(tamRandevu).setValue(object)
+        
         checkMark.isHidden = false
         summaryLabel.isHidden = false
         summaryText.isHidden = false
         reserveButton.isHidden = true
+        
+        
+        
         checkMark.loadGif(name: "giphy")
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4.2) {

@@ -12,7 +12,7 @@ class reservationCell: UITableViewCell {
     @IBOutlet weak var dateAndTimeLabel: UILabel!
     @IBOutlet weak var berberNameLabel: UILabel!
     @IBOutlet weak var phoneButton: UIButton!
-    
+    fileprivate let application = UIApplication.shared
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,6 +25,15 @@ class reservationCell: UITableViewCell {
     }
     @IBAction func phoneButtonClicked(_ sender: UIButton) {
         
+        if let phoneUrl = URL(string: sender.titleLabel?.text ?? "nil"){
+                  if application.canOpenURL(phoneUrl){
+                      application.open(phoneUrl, options: [:], completionHandler: nil)
+                      
+                  }else{
+                      print("Telefon Error")
+                      
+                  }
+              }
     }
     
 }
