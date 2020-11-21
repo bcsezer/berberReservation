@@ -11,10 +11,11 @@ import Firebase
 class ReservationListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var currentBerberName: UILabel!
     @IBOutlet weak var header: NSLayoutConstraint!
     
     var reservationList = [UserModal]()
-    
+    let currentUser = Auth.auth().currentUser
     private let database = Database.database().reference()
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
@@ -30,10 +31,42 @@ class ReservationListViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        DetectCurrentUser(user: (currentUser?.email)!)
         loadposts()
         configureActivity()
     }
-    func loadposts() {
+    @IBAction func logOutButtonClicked(_ sender: UIButton) {
+        
+        do { try Auth.auth().signOut()
+            
+            print("sign out")
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let VC = sb.instantiateViewController(withIdentifier: "homePageVC") as! HomePageViewController
+            let navRootView = UINavigationController(rootViewController: VC)
+            navRootView.modalPresentationStyle = .fullScreen
+            self.present(navRootView, animated: true, completion: nil)
+            
+        } catch { print("already logged out") }
+          
+        
+       
+    }
+    
+    
+    private func DetectCurrentUser(user:String){
+        
+        if currentUser?.email == "cemsezeroglu@gmail.com" {
+            currentBerberName.text = "Hoş geldin : Cem Sezeroglu"
+        }else{
+            print(currentUser?.email)
+        }
+        
+        
+        
+        
+    }
+    
+    private func loadposts() {
         activityIndicator.startAnimating()
         reservationList = []
         Database.database().reference().child("byMakas").observe(.value) { snapshot in

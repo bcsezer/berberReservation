@@ -102,7 +102,7 @@
                         <outlet property="adminEmail" destination="OyM-K6-0pF" id="NUp-Ec-vvu"/>
                         <outlet property="adminPassword" destination="PZr-0J-ILF" id="8uz-w3-oZP"/>
                         <outlet property="loginButton" destination="ZJx-Id-8Lp" id="uQn-VR-me0"/>
-                        <segue destination="xzU-hS-Uyb" kind="show" identifier="toAdminDetailsPage" id="mBU-yQ-SGY"/>
+                        <segue destination="XDl-Qi-Vqj" kind="show" identifier="toAdminDetailsPage" id="mBU-yQ-SGY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZjD-Jl-Ymc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -112,13 +112,13 @@
         <!--Reservation List View Controller-->
         <scene sceneID="5SP-HA-svO">
             <objects>
-                <viewController id="xzU-hS-Uyb" customClass="ReservationListViewController" customModule="berber" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="xzU-hS-Uyb" customClass="ReservationListViewController" customModule="berber" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YoM-SQ-Jl5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Lfd-5j-F42">
-                                <rect key="frame" x="0.0" y="130" width="414" height="766"/>
+                                <rect key="frame" x="0.0" y="168" width="414" height="728"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reservationCell" rowHeight="161" id="zmH-Pr-oIR" customClass="reservationCell" customModule="berber" customModuleProvider="target">
@@ -266,11 +266,11 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Izg-IR-HQD">
-                                <rect key="frame" x="0.0" y="88" width="414" height="42"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="80"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Randevu Listeniz" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Fc-PJ-81P">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Genel Randevu Listeniz" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Fc-PJ-81P">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="42"/>
-                                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="nhz-IJ-k3Z"/>
                                         </constraints>
@@ -288,29 +288,58 @@
                                         <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="138" translatesAutoresizingMaskIntoConstraints="NO" id="dId-nX-1zQ">
+                                        <rect key="frame" x="8" y="50" width="398.5" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hoş Geldin : Batuhan Başar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HyS-fz-QCS">
+                                                <rect key="frame" x="0.0" y="0.0" width="197.5" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="544-NM-xFW">
+                                                <rect key="frame" x="335.5" y="0.0" width="63" height="30"/>
+                                                <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                                <state key="normal" title="Çıkış Yap">
+                                                    <color key="titleColor" systemColor="systemRedColor"/>
+                                                    <color key="titleShadowColor" systemColor="systemRedColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="logOutButtonClicked:" destination="xzU-hS-Uyb" eventType="touchUpInside" id="ikf-N2-hhm"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="yey-ML-iPq"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="8Fc-PJ-81P" secondAttribute="bottom" id="9wy-lN-T6C"/>
+                                    <constraint firstItem="dId-nX-1zQ" firstAttribute="top" secondItem="8Fc-PJ-81P" secondAttribute="bottom" constant="8" id="8Xz-AH-621"/>
                                     <constraint firstAttribute="trailing" secondItem="8Fc-PJ-81P" secondAttribute="trailing" id="DAj-oa-93W"/>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="dId-nX-1zQ" secondAttribute="trailing" constant="7.5" id="L3e-Pb-Yjs"/>
                                     <constraint firstAttribute="trailing" secondItem="dFt-Lh-mPc" secondAttribute="trailing" id="OZc-oh-NN7"/>
+                                    <constraint firstAttribute="bottom" secondItem="dId-nX-1zQ" secondAttribute="bottom" id="U63-Jy-D5k"/>
                                     <constraint firstItem="dFt-Lh-mPc" firstAttribute="top" secondItem="Izg-IR-HQD" secondAttribute="top" id="U6r-rF-8Ca"/>
+                                    <constraint firstItem="dId-nX-1zQ" firstAttribute="leading" secondItem="Izg-IR-HQD" secondAttribute="leading" constant="8" id="Y9j-GC-hpp"/>
                                     <constraint firstItem="dFt-Lh-mPc" firstAttribute="leading" secondItem="Izg-IR-HQD" secondAttribute="leading" id="f0E-A2-VxI"/>
                                     <constraint firstItem="8Fc-PJ-81P" firstAttribute="top" secondItem="dFt-Lh-mPc" secondAttribute="bottom" id="hoL-TF-CtU"/>
                                     <constraint firstItem="8Fc-PJ-81P" firstAttribute="leading" secondItem="Izg-IR-HQD" secondAttribute="leading" id="q95-8I-qoP"/>
                                     <constraint firstItem="8Fc-PJ-81P" firstAttribute="top" secondItem="dFt-Lh-mPc" secondAttribute="bottom" id="wS3-3W-rer"/>
+                                    <constraint firstItem="dId-nX-1zQ" firstAttribute="top" secondItem="8Fc-PJ-81P" secondAttribute="bottom" constant="8" id="xlo-e5-GrV"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="l8m-qQ-sPS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Lfd-5j-F42" firstAttribute="top" secondItem="Izg-IR-HQD" secondAttribute="bottom" id="1gs-wd-fxL"/>
                             <constraint firstItem="Izg-IR-HQD" firstAttribute="leading" secondItem="l8m-qQ-sPS" secondAttribute="leading" id="Cp6-t7-LYg"/>
                             <constraint firstItem="Lfd-5j-F42" firstAttribute="trailing" secondItem="l8m-qQ-sPS" secondAttribute="trailing" id="Fsb-H3-CMF"/>
                             <constraint firstItem="Izg-IR-HQD" firstAttribute="top" secondItem="l8m-qQ-sPS" secondAttribute="top" id="JQR-rg-mPp"/>
                             <constraint firstItem="Izg-IR-HQD" firstAttribute="trailing" secondItem="l8m-qQ-sPS" secondAttribute="trailing" id="VLb-ME-8aj"/>
                             <constraint firstItem="Lfd-5j-F42" firstAttribute="leading" secondItem="l8m-qQ-sPS" secondAttribute="leading" id="ggb-Tg-foK"/>
+                            <constraint firstItem="Lfd-5j-F42" firstAttribute="top" secondItem="Izg-IR-HQD" secondAttribute="bottom" id="liM-fm-GnB"/>
                             <constraint firstAttribute="bottom" secondItem="Lfd-5j-F42" secondAttribute="bottom" id="w4V-LI-0XN"/>
                         </constraints>
                     </view>
@@ -320,18 +349,19 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="currentBerberName" destination="HyS-fz-QCS" id="gne-Vr-gzM"/>
                         <outlet property="header" destination="qGD-Mu-tdk" id="LgX-GX-eLI"/>
                         <outlet property="tableView" destination="Lfd-5j-F42" id="ZzU-ca-CbO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L9I-hQ-k2A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-139.13043478260872" y="2366.5178571428569"/>
+            <point key="canvasLocation" x="771.01449275362324" y="2366.5178571428569"/>
         </scene>
         <!--Home Page View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomePageViewController" customModule="berber" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homePageVC" id="BYZ-38-t0r" customClass="HomePageViewController" customModule="berber" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -904,7 +934,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Ty1-sb-Tpc">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XCq-em-DMS" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="homePage" automaticallyAdjustsScrollViewInsets="NO" id="XCq-em-DMS" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NW0-dQ-ijO">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1290,6 +1320,7 @@
         <!--Navigation Controller-->
         <scene sceneID="2py-my-MLQ">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8p1-Mw-Y0x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2mV-OR-osg" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="1vn-jO-asY"/>
@@ -1302,9 +1333,27 @@
                         <segue destination="wvJ-b1-NeD" kind="relationship" relationship="rootViewController" id="KOn-Ho-7Jo"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8p1-Mw-Y0x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-139" y="834"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3N1-8v-ROX">
+            <objects>
+                <navigationController storyboardIdentifier="adminPage" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="XDl-Qi-Vqj" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="XXC-Bv-ZTU"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4wR-6R-QxI">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xzU-hS-Uyb" kind="relationship" relationship="rootViewController" id="5HR-LB-XMh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aUQ-B1-WzW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-139.13043478260872" y="2366.5178571428569"/>
         </scene>
     </scenes>
     <resources>
@@ -1325,6 +1374,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

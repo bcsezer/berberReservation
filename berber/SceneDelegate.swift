@@ -15,6 +15,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
+        if Auth.auth().currentUser != nil {
+            let board = UIStoryboard.init(name: "Main", bundle: nil)
+            let homePage = board.instantiateViewController(identifier: "adminPage")
+            self.window?.rootViewController = homePage
+        }else{
+            let board = UIStoryboard.init(name: "Main", bundle: nil)
+            let homePage = board.instantiateViewController(identifier: "homePage")
+            
+            self.window?.rootViewController = homePage
+        }
+        
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 
