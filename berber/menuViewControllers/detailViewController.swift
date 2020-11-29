@@ -126,13 +126,18 @@ class detailViewController: UIViewController, UITextFieldDelegate {
             if (currentDate >= reservationDate) { //Bugünün tarihi, rezervasyon yarihinden büyükse ya geçmişse
                 //Demekki randevusu var ama tarihi geçmiş
                 let userInfo = userDate.dictionary(forKey: "userInformation")
-                let tamRandevu = userInfo!["tamRandevu"] as? String
-                
-                let stationsRef = database.child("byMakas") //Eğer yeni bir ref'e eklenicekse. örn xberber "byMakas" ismi değişicek
-                stationsRef.child(tamRandevu!).setValue(nil)
-                updateNoUI()
-                userDate.removeObject(forKey: "userInformation")
-                userDate.removeObject(forKey: "Date")
+                if userInfo != nil {
+                    let tamRandevu = userInfo!["tamRandevu"] as? String
+                    
+                    let stationsRef = database.child("byMakas") //Eğer yeni bir ref'e eklenicekse. örn xberber "byMakas" ismi değişicek
+                    stationsRef.child(tamRandevu!).removeValue()
+                    updateNoUI()
+                    userDate.removeObject(forKey: "userInformation")
+                    userDate.removeObject(forKey: "Date")
+                }else{
+                    updateNoUI()
+                }
+              
                 
             }else if (currentDate <= reservationDate)  {
                 //Randevusu var ve tarihi geçmemiş
@@ -248,12 +253,13 @@ class detailViewController: UIViewController, UITextFieldDelegate {
         
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .short
+       
         
         self.dateAndTimeText.text = dateFormatter.string(from: datePicker.date)
         
         
         let split =  dateAndTimeText.text!.split(separator: " ")
-     
+        print(split)
         dateLabelWithoutTime = split[0]+" "+split[1]+" "+split[2]
         
         
@@ -265,6 +271,8 @@ class detailViewController: UIViewController, UITextFieldDelegate {
     
     //MARK:Rezerve et butonuna tıklama eylemi
     @IBAction func rezerveEtButtonClicked(_ sender: UIButton) {
+        
+        if NetworkMonitor.shared.isConnected {
         //Belirtilen tarih ve berber boş mu dolu mu kontrol et - > checkAvalibility()
         activityIndicator.startAnimating()
         if summaryText.text == "" || nameText.text == "" || berberName == "" {
@@ -283,6 +291,10 @@ class detailViewController: UIViewController, UITextFieldDelegate {
             
              
             
+        }
+            
+        }else{
+            makeAllert(titleInput: "Uyarı", messageInput: "İnternet bağlantınızı kontrol edin ve uygulamayı yeniden başlatın")
         }
         
         

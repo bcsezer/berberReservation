@@ -17,6 +17,8 @@
 		A860A27C2559C4A20093E889 /* tenor.gif in Resources */ = {isa = PBXBuildFile; fileRef = A860A27B2559C4A20093E889 /* tenor.gif */; };
 		A860A2812559C8470093E889 /* giphy.gif in Resources */ = {isa = PBXBuildFile; fileRef = A860A2802559C8470093E889 /* giphy.gif */; };
 		A860A28F2559CDB00093E889 /* checkMArk.png in Resources */ = {isa = PBXBuildFile; fileRef = A860A28E2559CDB00093E889 /* checkMArk.png */; };
+		A8802FC72574405200134DE4 /* InternetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8802FC62574405200134DE4 /* InternetManager.swift */; };
+		A8802FD625745C3300134DE4 /* addReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8802FD525745C3300134DE4 /* addReservationViewController.swift */; };
 		A8844D392541F57200502B74 /* detailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8844D382541F57200502B74 /* detailViewController.swift */; };
 		A8844D3E2542166100502B74 /* locationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8844D3D2542166100502B74 /* locationViewController.swift */; };
 		A8844D442542378C00502B74 /* iletisimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8844D432542378C00502B74 /* iletisimViewController.swift */; };
@@ -64,6 +66,8 @@
 		A860A27B2559C4A20093E889 /* tenor.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = tenor.gif; sourceTree = "<group>"; };
 		A860A2802559C8470093E889 /* giphy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = giphy.gif; sourceTree = "<group>"; };
 		A860A28E2559CDB00093E889 /* checkMArk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkMArk.png; sourceTree = "<group>"; };
+		A8802FC62574405200134DE4 /* InternetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetManager.swift; sourceTree = "<group>"; };
+		A8802FD525745C3300134DE4 /* addReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addReservationViewController.swift; sourceTree = "<group>"; };
 		A8844D382541F57200502B74 /* detailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailViewController.swift; sourceTree = "<group>"; };
 		A8844D3D2542166100502B74 /* locationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationViewController.swift; sourceTree = "<group>"; };
 		A8844D432542378C00502B74 /* iletisimViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iletisimViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +154,14 @@
 			path = "Rezervasyon View'ı";
 			sourceTree = "<group>";
 		};
+		A8802FCE2574406300134DE4 /* Internet connection */ = {
+			isa = PBXGroup;
+			children = (
+				A8802FC62574405200134DE4 /* InternetManager.swift */,
+			);
+			path = "Internet connection";
+			sourceTree = "<group>";
+		};
 		A8844D422542368600502B74 /* menuViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +180,7 @@
 				A8108FF8255D8D180090281B /* adminLoginViewController.swift */,
 				A8C1DDE2255DA3A700C61A56 /* ReservationListViewController.swift */,
 				A8C1DDE7255DC24E00C61A56 /* reservationCell.swift */,
+				A8802FD525745C3300134DE4 /* addReservationViewController.swift */,
 			);
 			path = loginPages;
 			sourceTree = "<group>";
@@ -221,6 +234,7 @@
 				A8C2F6BF2538F1C20081852E /* Info.plist */,
 				A8EA238425547A8700180342 /* GoogleService-Info.plist */,
 				A8C1DDF1255EC15200C61A56 /* user Class */,
+				A8802FCE2574406300134DE4 /* Internet connection */,
 			);
 			path = berber;
 			sourceTree = "<group>";
@@ -503,6 +517,7 @@
 				A8108FF9255D8D180090281B /* adminLoginViewController.swift in Sources */,
 				A8C1DDE3255DA3A800C61A56 /* ReservationListViewController.swift in Sources */,
 				A8C2F6B62538F1BE0081852E /* HomePageViewController.swift in Sources */,
+				A8802FC72574405200134DE4 /* InternetManager.swift in Sources */,
 				A860A27725595BAC0093E889 /* PopUpViewController.swift in Sources */,
 				A8844D4C2542379A00502B74 /* hakkimizdaViewController.swift in Sources */,
 				A8C2F6B22538F1BE0081852E /* AppDelegate.swift in Sources */,
@@ -513,6 +528,7 @@
 				A8844D442542378C00502B74 /* iletisimViewController.swift in Sources */,
 				A8844D392541F57200502B74 /* detailViewController.swift in Sources */,
 				A84FEFB02558937C0001E27D /* popUp.swift in Sources */,
+				A8802FD625745C3300134DE4 /* addReservationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

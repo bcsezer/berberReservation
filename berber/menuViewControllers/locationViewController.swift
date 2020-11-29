@@ -42,8 +42,11 @@ class locationViewController: UIViewController,MKMapViewDelegate,CLLocationManag
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
+        if NetworkMonitor.shared.isConnected{
         demoMap()
+        }else{
+            makeAllert(titleInput: "Uyarı", messageInput: "Lütfen internet bağlantınızı kontrol edin ve uygulamayı yeniden başladın.")
+        }
         
     }
     
@@ -124,6 +127,11 @@ class locationViewController: UIViewController,MKMapViewDelegate,CLLocationManag
             
             
         }
+    }
+    func makeAllert(titleInput :String,messageInput:String){
+            let alert = UIAlertController(title: titleInput, message: messageInput, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Tamam", style: UIAlertAction.Style.cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
     }
 }
 

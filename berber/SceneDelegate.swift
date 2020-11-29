@@ -14,21 +14,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+       
+        if NetworkMonitor.shared.isConnected {
         
-        if Auth.auth().currentUser != nil {
-            let board = UIStoryboard.init(name: "Main", bundle: nil)
-            let homePage = board.instantiateViewController(identifier: "adminPage")
-            self.window?.rootViewController = homePage
+            if Auth.auth().currentUser != nil {
+                let board = UIStoryboard.init(name: "Main", bundle: nil)
+                let homePage = board.instantiateViewController(identifier: "adminPage")
+                self.window?.rootViewController = homePage
+            }else{
+                let board = UIStoryboard.init(name: "Main", bundle: nil)
+                let homePage = board.instantiateViewController(identifier: "homePage")
+                
+                self.window?.rootViewController = homePage
+            }
         }else{
             let board = UIStoryboard.init(name: "Main", bundle: nil)
             let homePage = board.instantiateViewController(identifier: "homePage")
-            
             self.window?.rootViewController = homePage
+            DispatchQueue.main.async {
+                self.makeAllert(titleInput: "Uyarı", messageInput: "Lütfen internet bağlantınızı kontrol edip yeniden başladın.")
+            }
+         
         }
         
-        guard let _ = (scene as? UIWindowScene) else { return }
+//        guard let _ = (scene as? UIWindowScene) else { return }
     }
-
+    func makeAllert(titleInput :String,messageInput:String){
+           let alert = UIAlertController(title: titleInput, message: messageInput, preferredStyle: UIAlertController.Style.alert)
+           self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+       }
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
