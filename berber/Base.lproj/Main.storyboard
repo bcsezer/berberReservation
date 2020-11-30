@@ -492,7 +492,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.56086793664383561" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Fht-Yq-U4f" firstAttribute="leading" secondItem="huP-0a-T6u" secondAttribute="leading" constant="10" id="4Zl-SZ-R17"/>
                                             <constraint firstItem="Fht-Yq-U4f" firstAttribute="centerX" secondItem="huP-0a-T6u" secondAttribute="centerX" id="K3I-Yg-3oI"/>
@@ -1385,10 +1385,10 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ns6-i1-tks">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="283"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="483"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WFI-2a-GCV">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="283"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="483"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tmx-ue-HiH">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -1511,6 +1511,9 @@
                                                                                 <integer key="value" value="4"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="buttonPressToggle:" destination="1yL-c5-nLg" eventType="touchUpInside" id="Qgi-Ut-hmg"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="22z-cq-BvA">
                                                                         <rect key="frame" x="136.5" y="0.0" width="106" height="40"/>
@@ -1522,6 +1525,9 @@
                                                                         <state key="normal" title="Yılmaz Saatçi">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </state>
+                                                                        <connections>
+                                                                            <action selector="buttonPressToggle:" destination="1yL-c5-nLg" eventType="touchUpInside" id="2CD-B4-Ang"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHJ-6i-u9Y">
                                                                         <rect key="frame" x="272.5" y="0.0" width="106.5" height="40"/>
@@ -1535,6 +1541,9 @@
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                                                                         </state>
+                                                                        <connections>
+                                                                            <action selector="buttonPressToggle:" destination="1yL-c5-nLg" eventType="touchUpInside" id="VuW-hY-NAv"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <constraints>
@@ -1607,26 +1616,58 @@
                                                         <rect key="frame" x="0.0" y="232" width="414" height="51"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xe5-3u-EPT">
-                                                                <rect key="frame" x="0.0" y="6" width="414" height="37"/>
+                                                                <rect key="frame" x="14" y="8" width="386" height="37"/>
                                                                 <color key="backgroundColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="37" id="9dI-Kb-4Dv"/>
+                                                                    <constraint firstAttribute="height" constant="37" id="Rbw-mk-e2b"/>
                                                                 </constraints>
                                                                 <state key="normal" title="Rezerve et">
                                                                     <color key="titleColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
                                                                 <connections>
+                                                                    <action selector="rezerveEtButtonClicked:" destination="1yL-c5-nLg" eventType="touchUpInside" id="9ih-xq-L9l"/>
                                                                     <action selector="rezerveEtButtonClicked:" destination="Ll1-dh-y0M" eventType="touchUpInside" id="hRC-m6-I4F"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="Xe5-3u-EPT" firstAttribute="leading" secondItem="c3N-Ak-0HJ" secondAttribute="leading" id="TJI-0u-DjM"/>
-                                                            <constraint firstAttribute="bottom" secondItem="Xe5-3u-EPT" secondAttribute="bottom" constant="8" id="TVa-JK-GRj"/>
-                                                            <constraint firstItem="Xe5-3u-EPT" firstAttribute="top" secondItem="c3N-Ak-0HJ" secondAttribute="top" constant="6" id="ogk-ec-bA7"/>
-                                                            <constraint firstAttribute="trailing" secondItem="Xe5-3u-EPT" secondAttribute="trailing" id="ose-j2-sdI"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Xe5-3u-EPT" secondAttribute="trailing" constant="14" id="I5L-V5-vwI"/>
+                                                            <constraint firstItem="Xe5-3u-EPT" firstAttribute="leading" secondItem="c3N-Ak-0HJ" secondAttribute="leading" constant="14" id="QGM-ma-Gp8"/>
                                                             <constraint firstAttribute="height" constant="51" id="q9r-dv-sRk"/>
+                                                            <constraint firstItem="Xe5-3u-EPT" firstAttribute="top" secondItem="c3N-Ak-0HJ" secondAttribute="top" constant="8" id="rVw-ld-AYq"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Xe5-3u-EPT" secondAttribute="bottom" constant="6" id="sBz-20-hUt"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WuQ-Tb-Mvm">
+                                                        <rect key="frame" x="0.0" y="283" width="414" height="200"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rezervasyon alındı." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eI-5x-o7I">
+                                                                <rect key="frame" x="59" y="8" width="296" height="71"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="71" id="NqE-xd-hMr"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkMArk.png" translatesAutoresizingMaskIntoConstraints="NO" id="f1Y-Ti-Kpc">
+                                                                <rect key="frame" x="143" y="99" width="128" height="72"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="72" id="z5r-PJ-KXm"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="f1Y-Ti-Kpc" firstAttribute="leading" secondItem="WuQ-Tb-Mvm" secondAttribute="leading" constant="143" id="3o6-uc-P9e"/>
+                                                            <constraint firstAttribute="height" constant="200" id="F78-mX-VS6"/>
+                                                            <constraint firstItem="f1Y-Ti-Kpc" firstAttribute="top" secondItem="7eI-5x-o7I" secondAttribute="bottom" constant="20" id="HoC-et-Cw8"/>
+                                                            <constraint firstAttribute="trailing" secondItem="f1Y-Ti-Kpc" secondAttribute="trailing" constant="143" id="MeX-tj-fgv"/>
+                                                            <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="f1Y-Ti-Kpc" secondAttribute="bottom" constant="29" id="T27-Ae-UWP"/>
+                                                            <constraint firstItem="7eI-5x-o7I" firstAttribute="leading" secondItem="WuQ-Tb-Mvm" secondAttribute="leading" constant="59" id="Wfy-Ov-6ep"/>
+                                                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="7eI-5x-o7I" secondAttribute="trailing" constant="59" id="jdJ-kH-Esx"/>
+                                                            <constraint firstItem="7eI-5x-o7I" firstAttribute="top" secondItem="WuQ-Tb-Mvm" secondAttribute="top" constant="8" id="sLr-ei-zP9"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -1664,15 +1705,26 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Randevu Al" id="AFq-kH-Ube"/>
+                    <connections>
+                        <outlet property="infoView" destination="WuQ-Tb-Mvm" id="dMI-xD-K3Y"/>
+                        <outlet property="isim" destination="62J-46-G3f" id="S7a-ok-y5A"/>
+                        <outlet property="rezerveEt" destination="Xe5-3u-EPT" id="Huk-g3-Sqe"/>
+                        <outlet property="tarihSaat" destination="Idi-2s-fYl" id="rHd-82-yRe"/>
+                        <outlet property="telefon" destination="0vZ-V6-Vqx" id="IQb-r8-bHl"/>
+                        <outletCollection property="buttons" destination="xPd-wP-mea" collectionClass="NSMutableArray" id="fBE-AF-avI"/>
+                        <outletCollection property="buttons" destination="22z-cq-BvA" collectionClass="NSMutableArray" id="8Hb-YG-P73"/>
+                        <outletCollection property="buttons" destination="vHJ-6i-u9Y" collectionClass="NSMutableArray" id="Qrj-7v-8wk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UIr-4C-DMk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1857" y="2367"/>
+            <point key="canvasLocation" x="1856.521739130435" y="2366.5178571428569"/>
         </scene>
     </scenes>
     <resources>
         <image name="arkaPlan" width="1066" height="1600"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="checkMArk.png" width="447" height="430"/>
         <image name="envelope" catalog="system" width="128" height="93"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="link" catalog="system" width="128" height="122"/>

@@ -10,7 +10,7 @@ import Firebase
 import SwiftGifOrigin
 
 class detailViewController: UIViewController, UITextFieldDelegate {
-   
+    let language = LanguageCheck()
     //MARK: İnitialize database - ref
     private let database = Database.database().reference()
     
@@ -170,12 +170,13 @@ class detailViewController: UIViewController, UITextFieldDelegate {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         
+        let tamamButton = UIBarButtonItem(title: "Tamam", style: UIBarButtonItem.Style.plain, target: nil, action: #selector(donePressed))
+        
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+       
+        toolBar.setItems([spaceButton,tamamButton], animated: true)
         
-        toolBar.setItems([spaceButton,doneButton], animated: true)
         return toolBar
-        
     }
     
     @IBAction func iptalEtButton(_ sender: UIButton) {
@@ -198,6 +199,23 @@ class detailViewController: UIViewController, UITextFieldDelegate {
         
         
     }
+    func languageCheking()-> String{
+            
+            if language.preferredLanguage() == "en"{
+                
+                return  "en"
+                
+                }else if language.preferredLanguage() == "tr"{
+                
+                    return  "tr"
+                
+                    }else if language.preferredLanguage() == "it"{
+                        return  "it"
+                
+                        }else{
+                            return  "zh"
+            }
+        }
     
     func updateNoUI(){
         
@@ -253,7 +271,12 @@ class detailViewController: UIViewController, UITextFieldDelegate {
         
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .short
-       
+        
+        if languageCheking() == "tr"{
+            dateFormatter.locale = NSLocale.init(localeIdentifier: "tr") as Locale
+        }else{
+            dateFormatter.locale = NSLocale.init(localeIdentifier: "tr") as Locale
+        }
         
         self.dateAndTimeText.text = dateFormatter.string(from: datePicker.date)
         

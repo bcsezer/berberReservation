@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 
 class ReservationListViewController: UIViewController {
+    let language = LanguageCheck()
     @IBOutlet weak var tableView: UITableView!
     fileprivate let application = UIApplication.shared
     @IBOutlet weak var currentBerberName: UILabel!
@@ -26,7 +27,7 @@ class ReservationListViewController: UIViewController {
         
         configureActivity()
         
-        loadposts()
+        
         tableView.delegate = self
         tableView.dataSource = self
       
@@ -35,12 +36,15 @@ class ReservationListViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         activityIndicator.startAnimating()
+        
         DetectCurrentUser(user: (currentUser?.email)!)
-        isWorking = false
+        loadposts()
         
        
     }
+   
     @IBAction func logOutButtonClicked(_ sender: UIButton) {
         if NetworkMonitor.shared.isConnected{
         do { try Auth.auth().signOut()

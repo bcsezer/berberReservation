@@ -42,7 +42,7 @@ class HomePageViewController: UIViewController {
         configureButtons(button: aboutButton)
         configureButtons(button: konumButton)
         configureButtons(button: iletisimButton)
-        buttonContaierView.layer.cornerRadius = 30
+        buttonContaierView.layer.cornerRadius = 25
         buttonContaierView.layer.masksToBounds = true
         
         makasLogo.isUserInteractionEnabled = true
